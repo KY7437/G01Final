@@ -1,4 +1,6 @@
 # Lesson Planning
+main page : https://ky7437myproject.streamlit.app/
+
 plan lesson in a week(til monday)
 
 the revision after the presentation
