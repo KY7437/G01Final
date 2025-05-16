@@ -1,26 +1,18 @@
 # Lesson Planning
 main page : https://ky7437myproject.streamlit.app/
-
 plan lesson in a week(til monday)
-
 the revision after the presentation
-
 Overview: middle shcool student
-Urls
+Urls: 
+objectives: 
+tools(streamlit main): 
 
-objectives
-tools(streamlit main)
+# teaching procedure 55min total
+## Voca
+Word frequency
+Wordle; ENG-ENG
 
-teaching procedure 55min total
-Voca
-Grammar
-Passage Reading
-
-### The Midnight Libaray
-In the small town of Willowby, there stood an old library that was rumored to be enchanted. Every night at midnight, the books inside would whisper stories to each other, bringing their characters to life. One evening, Sarah, a curious 15-year-old book lover, decided to sneak into the library to see if the rumors were true.
-As the clock struck twelve, the books began to rustle. To Sarah's amazement, characters stepped out of their pages. She met Alice from Wonderland, the White Rabbit, and even pirates from Treasure Island. They invited her to join their midnight council, where they discussed the tales of their adventures and the wisdom they contained.
-Sarah spent the whole night listening and learning from the characters, promising to keep their secret. As dawn approached, they returned to their pages. Sarah left the library, inspired and filled with stories to tell, forever changed by the magic of the Midnight Library.
-
+## Grammar: Role play 
 관계부사
 관계대명사: that을 치면 that이 들어간 예문을 보여준다. 
 as접속사
@@ -28,7 +20,13 @@ as접속사
 분사구문
 불규칙동사: 동사 원형(사전형)을 보여주고 학생들이 과거형과 과거분사형을 입력하게 하기. 
 
-Quiz
+## Passage Reading: TTS
+### The Midnight Libaray
+In the small town of Willowby, there stood an old library that was rumored to be enchanted. Every night at midnight, the books inside would whisper stories to each other, bringing their characters to life. One evening, Sarah, a curious 15-year-old book lover, decided to sneak into the library to see if the rumors were true.
+As the clock struck twelve, the books began to rustle. To Sarah's amazement, characters stepped out of their pages. She met Alice from Wonderland, the White Rabbit, and even pirates from Treasure Island. They invited her to join their midnight council, where they discussed the tales of their adventures and the wisdom they contained.
+Sarah spent the whole night listening and learning from the characters, promising to keep their secret. As dawn approached, they returned to their pages. Sarah left the library, inspired and filled with stories to tell, forever changed by the magic of the Midnight Library.
+
+## Quiz
 
 lesson materials
 story title
