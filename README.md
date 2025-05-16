@@ -9,16 +9,16 @@ tools(streamlit main):
 
 # teaching procedure
 ## Voca
-Word frequency
-Wordle; ENG-ENG
+- Word frequency app(make a csv file from the passage)
+- Wordle; ENG-ENG(to check if students do know or not the words)
 
 ## Grammar: Role play 
-관계부사
-관계대명사: that을 치면 that이 들어간 예문을 보여준다. 
-as접속사
-현재분사(수식)
-분사구문
-불규칙동사: 동사 원형(사전형)을 보여주고 학생들이 과거형과 과거분사형을 입력하게 하기. 
+- Relative adverbs
+- Relative pronouns: if a student enter a relative pronoun, the app shows example sentences containing that relative pronoun. 
+- Conjunction As
+- Participle phrases
+- Gerunds(present participles)
+- Irregular verbs: show a verb that is bare form to a student and make s/he to enter the preterite and participle forms. 
 
 ## Passage Reading
 ### The Midnight Libaray 
@@ -28,13 +28,16 @@ Sarah spent the whole night listening and learning from the characters, promisin
 
 #### Read the whole passage using TTS
 #### Summary the passage
+- Accroding to the story
+- About the characters
 #### Images
 #### Grammatically crucial sentences
+- Italic or bold the grammatical part and show then after reading the passage. 
 
 ## Quiz
 ### Voca: English to English meaning(app)
-### Grammar: 
-### Passsage: 
+### Grammar: Fill in the blanks
+### Passsage: T/F questions
 
 lesson materials
 story title
