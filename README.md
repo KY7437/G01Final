@@ -7,6 +7,13 @@ Urls:
 objectives: 
 tools(streamlit main): 
 
+# New lesson plan(2025.05.19 updated)
+## Reading: Passage reading > TF, contents 
+## Listening: TTS
+## Writing: Relocate words according to the grammatical word order. 
+## Speaking: Roleplay
+
+
 # teaching procedure
 ## Voca
 - Word frequency app(make a csv file from the passage)
@@ -38,12 +45,6 @@ Sarah spent the whole night listening and learning from the characters, promisin
 ### Voca: English to English meaning(app)
 ### Grammar: Fill in the blanks
 ### Passsage: T/F questions
-
-
-Reading
-Writing
-Speaking
-Listening
 
 lesson materials
 story title
