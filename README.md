@@ -47,17 +47,27 @@ Sarah spent the whole night listening and learning from the characters, promisin
 ### Grammar: Fill in the blanks
 ### Passsage: T/F questions
 
-lesson materials
-story title
-story
-
 QRcodes(streamlits or huggingface, padlet)
 
 Theoretical foundations for this lesson plan
 
-사족 없이 깔끔하게
-가끔 이모지 등 넣어서 지루하지 않게
+# 2025. 05. 19 Updated
 
-19일에 3시간 모일 예정
+## Vocabulary
+### Word Frequency
+### Wordle; Eng-Eng
+
+## Grammar
+### Role Playing
+
+## Passage Reading
+### TTS Listening
+### Key Sentences
+
+## Quiz
+### Contents;
+### Grammar: relocate the words in a grammartical way
+### Vocabulary: Eng-Eng
+
 
 23일까지 우리의 lesson planning TTS로 소개영상 찍기 
