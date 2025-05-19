@@ -3,7 +3,7 @@
 - plan lesson in a week(til monday)
 - the revision after the presentation
 - Overview: middle school student
-- Urls: https://ky7437myproject.streamlit.app/
+- Urls: https://s25g01.streamlit.app/
 - objectives: 
 - tools(streamlit main):TTS, Wordle, Word Frequency, AI image generator...
 
