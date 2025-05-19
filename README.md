@@ -1,11 +1,11 @@
 # Lesson Planning
-main page : https://ky7437myproject.streamlit.app/
-plan lesson in a week(til monday)
-the revision after the presentation
-Overview: middle shcool student
-Urls: 
-objectives: 
-tools(streamlit main):
+- main page : https://github.com/KY7437/G01Final
+- plan lesson in a week(til monday)
+- the revision after the presentation
+- Overview: middle school student
+- Urls: https://ky7437myproject.streamlit.app/
+- objectives: 
+- tools(streamlit main):TTS, Wordle, Word Frequency, AI image generator...
 
 # 2025. 05. 19 Updated
 
