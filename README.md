@@ -9,8 +9,16 @@ tools(streamlit main):
 
 # 2025. 05. 19 Updated
 
+## In the end of this lesson, ...
+- Students will be able to understand the passage.
+- Students will be able to understand and apply the grammar rules.
+- Students will be able to memorize nessasary words.
+- Students will be able to ...
+
 ## Vocabulary
-### Word Frequency
+### Word Frequency; fork from MK316
+Make a cvs file from the whole passage, elimitating undesirable words and phrases and 
+
 ### Wordle; Eng-Eng
 
 ## Grammar
@@ -26,14 +34,24 @@ tools(streamlit main):
 In the small town of Willowby, there stood an old library that was rumored to be enchanted. Every night at midnight, the books inside would whisper stories to each other, bringing their characters to life. One evening, Sarah, a curious 15-year-old book lover, decided to sneak into the library to see if the rumors were true.
 As the clock struck twelve, the books began to rustle. To Sarah's amazement, characters stepped out of their pages. She met Alice from Wonderland, the White Rabbit, and even pirates from Treasure Island. They invited her to join their midnight council, where they discussed the tales of their adventures and the wisdom they contained.
 Sarah spent the whole night listening and learning from the characters, promising to keep their secret. As dawn approached, they returned to their pages. Sarah left the library, inspired and filled with stories to tell, forever changed by the magic of the Midnight Library.
+
 ### TTS Listening
+- One by one sentence TTS(huggingface)
+  TTS that accounts one sentence by one will enable for students to do specific activities; shadowing, reading after TTS, since it will offer them more percise pronunciations, stresses(accents), and intonations. 
+  
+- Full TTS(huggingface)
+  Full version of TTS can be used for practicing scanning or skimming. 
+
 ### Summary the passage
 - Accroding to the story
 - About the characters
+- 
 ### Images
+- AI generated cartoon
+- AI generated images
+  
 ### Key Sentences; Grammatically crucial sentences
 - Italic or bold the grammatical part and show then after reading the passage. 
-
 
 ## Quiz
 ### Contents;
