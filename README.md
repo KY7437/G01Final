@@ -17,7 +17,9 @@ tools(streamlit main):
 
 ## Vocabulary
 ### Word Frequency; fork from MK316
-Make a cvs file from the whole passage, elimitating undesirable words and phrases and 
+- Make a cvs file from the whole passage, elimitating undesirable words and phrases.
+- Advantages : make it easy to have a word list, and the teachers can select which words they want to teach. 
+- Concerns : Students may use the app, but students may not distinguish which words is important. 
 
 ### Wordle; Eng-Eng
 
@@ -37,9 +39,11 @@ Sarah spent the whole night listening and learning from the characters, promisin
 
 ### TTS Listening
 - One by one sentence TTS(huggingface)
+  - Users of this app can choose which sentences they want to listen, as much as they want. 
   - TTS that accounts one sentence by one will enable for students to do specific activities; shadowing, reading after TTS, since it will offer them more percise pronunciations, stresses(accents), and intonations. 
   
 - Full TTS(huggingface)
+  - Press the button to listen through the whole passage, non-stop. 
   - Full version of TTS can be used for practicing scanning or skimming. 
 
 ### Summary the passage
