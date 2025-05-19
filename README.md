@@ -40,11 +40,13 @@ Sarah spent the whole night listening and learning from the characters, promisin
 ### TTS Listening
 - One by one sentence TTS(huggingface)
   - Users of this app can choose which sentences they want to listen, as much as they want. 
-  - TTS that accounts one sentence by one will enable for students to do specific activities; shadowing, reading after TTS, since it will offer them more percise pronunciations, stresses(accents), and intonations. 
+  - TTS that accounts one sentence by one will enable for students to do specific activities; shadowing, reading after TTS, since it will offer them more percise pronunciations, stresses(accents), and intonations.
+  - Concern: it may not good for understanding the passage as whole. 
   
 - Full TTS(huggingface)
   - Press the button to listen through the whole passage, non-stop. 
-  - Full version of TTS can be used for practicing scanning or skimming. 
+  - Full version of TTS can be used for practicing scanning or skimming.
+  - Concern: it may not good for understanding the sentences respectively.
 
 ### Summary the passage
 - Accroding to the story
