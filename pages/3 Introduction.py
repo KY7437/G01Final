@@ -12,15 +12,13 @@ tab1, tab2, tab3 = st.tabs(["❄️ Word List", "❄️ 2. Wordle", "❄️ 3. R
 with tab1:
     st.markdown("### 📋 Word Frequency Table")
 
-   # Load CSV from GitHub (update the link below)
-  url = "https://raw.githubusercontent.com/KY7437/streamlit25/refs/heads/main/data/word_frequency%20(1).csv"
-  df = pd.read_csv(url)
+    # Load CSV from GitHub (update the link below)
+    url = "https://raw.githubusercontent.com/KY7437/streamlit25/refs/heads/main/data/word_frequency%20(1).csv"
+    df = pd.read_csv(url)
 
     # Show table only when button is clicked
-  if st.button("Show Word List"):
-     st.dataframe(df, use_container_width=True)
-
-
+    if st.button("Show Word List"):
+        st.dataframe(df, use_container_width=True)
 
 with tab2:
     # Define dictionary of words and their definitions
