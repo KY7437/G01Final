@@ -75,6 +75,21 @@ Sarah spent the whole night listening and learning from the characters, promisin
 ### Contents;
 ### Grammar: relocate the words in a grammartical way
 ### Vocabulary: Eng-Eng
+   - Lesson Goal
+   To deepen vocabulary comprehension and develop the ability to infer word meanings from English definitions.
+   -Lesson Description
+   This lesson helps students better understand vocabulary through English-only definitions. Using a vocabulary quiz app, students read definitions and guess the corresponding word, naturally learning the word's meaning,  usage, and nuance.
+
+- Advantages
+   1. The app allows students to learn at their own pace and supports repetition.
+   2. Exposure to definitions, examples, and synonyms enables deeper vocabulary learning.
+   3. Immediate feedback and review of incorrect answers improve learning efficiency.
+   4. Understanding words in English without translating into Korean enhances English thinking skills.
+-Disadvantages
+   1. Students may struggle with understanding English definitions without sufficient support.
+   2. If not enough example sentences are provided, it may be hard to apply words in context.
+   3. If students focus solely on matching words with definitions, it may not translate to actual usage.
+    
 
 ### Voca: English to English meaning(app)
 ### Grammar: Fill in the blanks
