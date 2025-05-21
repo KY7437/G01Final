@@ -114,6 +114,6 @@ Theoretical foundations for this lesson plan
 - 롤플레이 텍스트를 칼럼으로 A, B 나누기도 가능함
 - 워들 게임 규칙을 좀 더 자세하게 설명할 것(색에 대해서도)
 - 워들 글자수/도전 횟수에 제한 규칙을 바꾸는 것도 고려해 볼 것(scoring)
-- 
+- 위들 박스 사이즈 늘리기
 
 
