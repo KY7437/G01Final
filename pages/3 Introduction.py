@@ -15,10 +15,10 @@ with tab1:
     # Add functionality for the Word List tab here
 
 with tab2:
-     import streamlit as st
-import random
+    import streamlit as st
+    import random
 
-# Dictionary of words and their definitions
+# Define dictionary of words and their definitions
 words = {
     "magic": "a power that makes strange or wonderful things happen",
     "sneak": "to move quietly so no one can see or hear you",
@@ -36,52 +36,46 @@ def compare_words(guess, answer):
             result.append("⬛")  # Letter not in word
     return "".join(result)
 
-# Select a random word
-answer = random.choice(list(words.keys()))
-definition = words[answer]
-
-st.title("🎯 Welcome to Wordle!")
-st.write("Guess the 5-letter word. You have 6 attempts.")
-
-# Initialize session state
-if 'attempt' not in st.session_state:
+# Initialize session state variables
+if 'answer' not in st.session_state:
+    st.session_state.answer = random.choice(list(words.keys()))
+    st.session_state.definition = words[st.session_state.answer]
     st.session_state.attempt = 0
     st.session_state.used_letters = set()
     st.session_state.correct = False
 
-if st.session_state.attempt < 6 and not st.session_state.correct:
-    # Input field for user guess
-    guess = st.text_input(f"Attempt {st.session_state.attempt + 1}: Enter your guess:").lower()
+st.title("🎯 Welcome to Wordle!")
+st.write("Guess the 5-letter word. You have 6 attempts.")
 
-    # Check if the input is valid
-    if st.button("Submit"):
-        if len(guess) != 5:
-            st.warning("⚠️ Please enter a 5-letter word.")
-        elif guess not in words:
-            st.warning("⚠️ Please guess one of these words: magic, sneak, rumor")
+# Input field for user's guess
+guess = st.text_input(f"Attempt {st.session_state.attempt + 1}: Enter your guess:").lower()
+
+# Process the guess when the user clicks the submit button
+if st.button("Submit") and not st.session_state.correct:
+    if len(guess) != 5:
+        st.warning("⚠️ Please enter a 5-letter word.")
+    elif guess not in words:
+        st.warning("⚠️ Please guess one of these words: magic, sneak, rumor")
+    else:
+        st.session_state.attempt += 1
+        feedback = compare_words(guess, st.session_state.answer)
+        st.write("Result: ", feedback)
+
+        if guess == st.session_state.answer:
+            st.session_state.correct = True
+            st.success(f"✅ Correct! The word is '{st.session_state.answer.upper()}'.")
+            st.info(f"📘 Meaning: {st.session_state.definition}")
         else:
-            st.session_state.attempt += 1
-            feedback = compare_words(guess, answer)
-            st.write("Result: ", feedback)
+            for i in range(5):
+                if guess[i] in st.session_state.answer and guess[i] != st.session_state.answer[i]:
+                    st.session_state.used_letters.add(guess[i])
 
-            # Check if the guess is correct
-            if guess == answer:
-                st.session_state.correct = True
-                st.success(f"✅ Correct! The word is '{answer.upper()}'.")
-                st.info(f"📘 Meaning: {definition}")
-            else:
-                # Show hint letters (yellow letters)
-                for i in range(5):
-                    if guess[i] in answer and guess[i] != answer[i]:
-                        st.session_state.used_letters.add(guess[i])
-
-                if st.session_state.used_letters:
-                    hint_letters = ", ".join(sorted(letter.upper() for letter in st.session_state.used_letters))
-                    st.write(f"🔤 Hint letters: {hint_letters}")
-
-if st.session_state.attempt >= 6 and not st.session_state.correct:
-    st.error(f"❌ Sorry, you used all attempts. The word was '{answer.upper()}'.")
-    st.info(f"📘 Meaning: {definition}")
+            if st.session_state.used_letters:
+                hint_letters = ", ".join(sorted(letter.upper() for letter in st.session_state.used_letters))
+                st.write(f"🔤 Hint letters: {hint_letters}")
+    if st.session_state.attempt >= 6 and not st.session_state.correct:
+    st.error(f"❌ Sorry, you used all attempts. The word was '{st.session_state.answer.upper()}'.")
+    st.info(f"📘 Meaning: {st.session_state.definition}")
 
    
 
