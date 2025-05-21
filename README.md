@@ -25,12 +25,20 @@
 
 ## Grammar
 ### Role Playing
-- Relative adverbs
-- Relative pronouns: if a student enter a relative pronoun, the app shows example sentences containing that relative pronoun. 
-- Conjunction As
-- Participle phrases
-- Gerunds(present participles)
-- Irregular verbs: show a verb that is bare form to a student and make s/he to enter the preterite and participle forms. 
+-  Lesson Goal:Before studying the grammar rules explicitly, students will naturally acquire and understand grammar through example-based conversations.
+
+- Lesson Description:
+This conversation-focused class helps students acquire and use specific grammar structures through real-life English dialogues. Learners use a Python-based app to input a target grammar point, generate a dialogue containing that grammar, and then roleplay the conversation in pairs or small groups. This method improves both speaking fluency and grammatical accuracy.
+   Advantages
+  1. Grammar becomes "living knowledge" by using it in authentic dialogue situations instead of textbook examples.
+  2. Repeating grammar in a natural context enhances speaking fluency and confidence.
+  3. Pair and group activities promote communication skills, listening, and social development.
+
+  Disadvantages
+  1. Students lacking basic grammar knowledge may need additional explanations before engaging in roleplays.
+  2. Speaking alone may not fully internalize grammar forms and rules—supplementary learning is required.
+  3. Introverted or low-confidence students may be reluctant to participate in roleplays.
+
 
 ## Passage Reading
 
