@@ -8,7 +8,8 @@ st.write("🌱 Vocabulary learning")
 
 tab1, tab2, tab3, tab4 = st.tabs(["❄️ Word List", "❄️ 2. Wordle", "❄️ 3. Role Playing"])
 
-with tab1
+with tab1: 
+ 
 
 with tab2 : 
  import streamlit as st
