@@ -15,7 +15,13 @@ with tab1:
     # Add functionality for the Word List tab here
 
 with tab2:
-    # Grammar example sentence dictionary
+     # Placeholder for tab3 content
+    st.write("Content for Role Playing tab goes here.")
+    # Add functionality for the Role Playing tab here
+   
+
+with tab3:
+     # Grammar example sentence dictionary
     EXPRESSION_DB = {
         "that": {
             "examples": [
@@ -48,9 +54,7 @@ with tab2:
     else:
         st.write("⚠️ Please use expressions we used in class!!")
 
-with tab3:
-    # Placeholder for tab3 content
-    st.write("Content for Role Playing tab goes here.")
-    # Add functionality for the Role Playing tab here
+    
+   
 
  
