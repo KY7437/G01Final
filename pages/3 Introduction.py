@@ -7,3 +7,100 @@ import random
 st.write("🌱 Vocabulary learning")
 
 tab1, tab2, tab3, tab4 = st.tabs(["❄️ Word List", "❄️ 2. Wordle", "❄️ 3. Role Playing"])
+
+with tab1
+
+with tab2 : 
+  {
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPPO3Ll6JEZqYb0v7HAfQXF",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/KY7437/G01Final/blob/main/untitled4.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 문법 표현 예문 사전\n",
+        "EXPRESSION_DB = {\n",
+        "    \"that\": {\n",
+        "        \"examples\": [\n",
+        "            \"A: Did you watch the movie that I recommended yesterday?\",\n",
+        "            \"B: Yes, I did! I loved the part that shows the main character’s childhood.\",\n",
+        "            \"A: Me too! The scene that made me cry was at the end.\",\n",
+        "            \"B: Same here. I think it’s a movie that everyone should watch.\"\n",
+        "        ]\n",
+        "    },\n",
+        "    \"be p.p\": {\n",
+        "        \"examples\": [\n",
+        "            \"A: Did you hear? Our classroom was cleaned yesterday.\",\n",
+        "            \"B: Really? It looks so much better now.\",\n",
+        "            \"A: Yeah, and new computers were installed this morning.\",\n",
+        "            \"B: That’s great! I heard the old ones were broken last week.\",\n",
+        "            \"A: Right. The whole room was redesigned by the school’s tech team.\"\n",
+        "        ]\n",
+        "    }\n",
+        "}\n",
+        "\n",
+        "# 표현 입력 받기\n",
+        "expression = input(\"📝 표현을 입력하세요 (예: that, be p.p): \").strip().lower()\n",
+        "\n",
+        "# 결과 출력\n",
+        "if expression in EXPRESSION_DB:\n",
+        "    data = EXPRESSION_DB[expression]\n",
+        "\n",
+        "\n",
+        "    print(\"\\n🗣️ 예문:\")\n",
+        "    for ex in data[\"examples\"]:\n",
+        "        print(f\"- {ex}\")\n",
+        "else:\n",
+        "    print(\"⚠️ 등록된 예문이 아직 없어요. 다른 표현을 입력해 보세요!\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Kv8U11mP2OUi",
+        "outputId": "86bbe3d6-9617-4a4f-e839-5df738ead686"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "📝 표현을 입력하세요 (예: that, be p.p): that\n",
+            "\n",
+            "🗣️ 예문:\n",
+            "- A: Did you watch the movie that I recommended yesterday?\n",
+            "- B: Yes, I did! I loved the part that shows the main character’s childhood.\n",
+            "- A: Me too! The scene that made me cry was at the end.\n",
+            "- B: Same here. I think it’s a movie that everyone should watch.\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
+
