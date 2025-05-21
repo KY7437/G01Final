@@ -13,9 +13,7 @@ with tab1:
 
 with tab2 : 
  import streamlit as st
-
-# 문법 표현 예문 사전
-EXPRESSION_DB = {
+ EXPRESSION_DB = {
     "that": {
         "examples": [
             "A: Did you watch the movie that I recommended yesterday?",
@@ -30,19 +28,17 @@ EXPRESSION_DB = {
             "B: Really? It looks so much better now.",
             "A: Yeah, and new computers were installed this morning.",
             "B: That’s great! I heard the old ones were broken last week.",
-            "A: Right. The whole room was redesigned by the school’s tech team."
-        ]
-    }
-}
-
-# 표현 입력 받기
-expression = st.text_input("📝 Enter expressions (ex. that, be p.p): ").strip().lower()
-
-# 결과 출력
-if expression in EXPRESSION_DB:
+            "A: Right. The whole room was redesigned by the school’s tech team."]}}
+ expression = st.text_input("📝 Enter expressions (ex. that, be p.p): ").strip().lower()
+ 
+ if expression in EXPRESSION_DB:
     data = EXPRESSION_DB[expression]
     st.write("🗣️ sample sentences:")
     for ex in data["examples"]:
         st.write(f"- {ex}")
-else:
+ else:
     st.write("⚠️ Please use expressions we used in class!!")
+
+
+with tab3:
+ 
