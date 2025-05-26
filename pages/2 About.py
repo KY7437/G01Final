@@ -1,6 +1,8 @@
 import streamlit as st
 
-st.write("This app is under construction.")
+st.write("In the end of this lesson,)
 
-url="https://github.com/KY7437/G01Final/raw/main/data/dycm73.png"
-st.image(url, caption="QR CODE", width=500)  # width in pixel
+         st.write(Students will be able to understand the passage.
+Students will be able to understand and apply the grammar rules.
+Students will be able to memorize nessasary words.
+Students will be able to ....")
