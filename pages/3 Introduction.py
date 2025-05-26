@@ -21,65 +21,74 @@ with tab1:
         st.dataframe(df, use_container_width=True)
 
 with tab2:
-    # Define dictionary of words and their definitions
-    words = {
-        "magic": "a power that makes strange or wonderful things happen",
-        "sneak": "to move quietly so no one can see or hear you",
-        "rumor": "a story that people talk about, but it may not be true"
-    }
+   import streamlit as st
+import random
 
-    def compare_words(guess, answer):
-        result = []
-        for i in range(len(guess)):
-            if guess[i] == answer[i]:
-                result.append("🟩")  # Correct letter and position
-            elif guess[i] in answer:
-                result.append("🟨")  # Correct letter wrong position
-            else:
-                result.append("⬛")  # Letter not in word
-        return "".join(result)
+core_words = {
+    "magic": "a special power that makes impossible things happen",
+    "library": "a place where you can read or borrow books",
+    "adventure": "an exciting or unusual experience",
+    "secret": "something that you do not tell other people",
+    "listen": "to pay attention to sounds or words",
+    "sneak": "to go somewhere quietly and secretly"
+}
 
-    # Initialize session state variables
-    if 'answer' not in st.session_state:
-        st.session_state.answer = random.choice(list(words.keys()))
-        st.session_state.definition = words[st.session_state.answer]
-        st.session_state.attempt = 0
-        st.session_state.used_letters = set()
-        st.session_state.correct = False
+word_list = [
+    "magic", "library", "adventure", "secret", "listen", "sneak",
+    "midnight", "character", "change", "inspire", "pirate",
+    "council", "tale", "wisdom", "leave", "story", "approach",
+    "curious", "dawn", "keep", "promise", "change", "return",
+    "learn", "whole", "spend", "contain", "wisdom", "discuss", "join", "invite",
+    "island", "treasure", "decide", "bring", "curious", "enchant", "stand", "rumor"
+]
 
-    st.title("🎯 Welcome to Wordle!")
-    st.write("Guess the 5-letter word. You have 6 attempts.")
+# User input
+guess = st.text_input("Enter your guess:").strip().lower()
 
-    # Input field for user's guess
-    guess = st.text_input(f"Attempt {st.session_state.attempt + 1}: Enter your guess:").lower()
+if 'answer' not in st.session_state:
+    st.session_state.answer = random.choice(list(core_words.keys()))
+    st.session_state.definition = core_words[st.session_state.answer]
+    st.session_state.attempts = 0
+    st.session_state.max_attempts = 6
+    st.session_state.guessed = False
 
-    # Process the guess when the user clicks the submit button
-    if st.button("Submit") and not st.session_state.correct:
-        if len(guess) != 5:
-            st.warning("⚠️ Please enter a 5-letter word.")
-        elif guess not in words:
-            st.warning("⚠️ Please guess one of these words: magic, sneak, rumor")
+def compare_words(guess, answer):
+    result = []
+    for i in range(len(guess)):
+        if i < len(answer) and guess[i] == answer[i]:
+            result.append("🟩")
+        elif guess[i] in answer:
+            result.append("🟨")
         else:
-            st.session_state.attempt += 1
-            feedback = compare_words(guess, st.session_state.answer)
-            st.write("Result: ", feedback)
+            result.append("⬛")
+    return "".join(result)
 
-            if guess == st.session_state.answer:
-                st.session_state.correct = True
-                st.success(f"✅ Correct! The word is '{st.session_state.answer.upper()}'.")
-                st.info(f"📘 Meaning: {st.session_state.definition}")
-            else:
-                for i in range(5):
-                    if guess[i] in st.session_state.answer and guess[i] != st.session_state.answer[i]:
-                        st.session_state.used_letters.add(guess[i])
+st.title("Wordle Game")
+st.write(f"Hint: Definition - {st.session_state.definition}")
+st.write(f"The word has {len(st.session_state.answer)} letters.")
+st.write(f"You have {st.session_state.max_attempts - st.session_state.attempts} attempts left.")
 
-                if st.session_state.used_letters:
-                    hint_letters = ", ".join(sorted(letter.upper() for letter in st.session_state.used_letters))
-                    st.write(f"🔤 Hint letters: {hint_letters}")
+guess = st.text_input("Enter your guess:")
 
-    if st.session_state.attempt >= 6 and not st.session_state.correct:
-        st.error(f"❌ Sorry, you used all attempts. The word was '{st.session_state.answer.upper()}'.")
-        st.info(f"📘 Meaning: {st.session_state.definition}")
+if st.button("Submit") and guess:
+    guess = guess.lower()
+    if guess not in word_list:
+        st.warning("Please guess a valid word from the list.")
+    elif st.session_state.guessed:
+        st.info("You already guessed the word! Please restart the app to play again.")
+    else:
+        st.session_state.attempts += 1
+        feedback = compare_words(guess, st.session_state.answer)
+        st.write(f"Result: {feedback}")
+        if guess == st.session_state.answer:
+            st.success(f"Correct! The word is '{st.session_state.answer.upper()}'.")
+            st.write(f"Meaning: {st.session_state.definition}")
+            st.session_state.guessed = True
+        elif st.session_state.attempts >= st.session_state.max_attempts:
+            st.error(f"Sorry, you used all attempts. The word was '{st.session_state.answer.upper()}'.")
+            st.write(f"Meaning: {st.session_state.definition}")
+            st.session_state.guessed = True
+
 
 with tab3:
     # Grammar example sentence dictionary
