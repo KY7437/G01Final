@@ -21,19 +21,22 @@ with tab1:
     In the small town of Willowby, there stood an old library that was rumored to be enchanted. Every night at midnight, the books inside would whisper stories to each other, bringing their characters to life. One evening, Sarah, a curious 15-year-old book lover, decided to sneak into the library to see if the rumors were true. As the clock struck twelve, the books began to rustle. To Sarah's amazement, characters stepped out of their pages. She met Alice from Wonderland, the White Rabbit, and even pirates from Treasure Island. They invited her to join their midnight council, where they discussed the tales of their adventures and the wisdom they contained. Sarah spent the whole night listening and learning from the characters, promising to keep their secret. As dawn approached, they returned to their pages. Sarah left the library, inspired and filled with stories to tell, forever changed by the magic of the Midnight Library.
     """
 
-    # Button to play the audio
+    # Button to play the audio for the predefined text
     if st.button("Play TTS"):
         # Convert predefined text to speech
         audio_bytes = text_to_speech(predefined_text)
         # Use Streamlit's audio component to play the audio file
         st.audio(audio_bytes, format="audio/mp3")
-      st.title("🔊 Word Pronunciation Practice")
+
+    # Word pronunciation practice (ensure `selected_word` is defined)
+    st.title("🔊 Word Pronunciation Practice")
+    selected_word = st.text_input("Enter a word to pronounce:")
     if selected_word:
-      tts = gTTS(selected_word, lang='en')
-      audio_fp = BytesIO()
-      tts.write_to_fp(audio_fp)
-      audio_fp.seek(0)
-      st.audio(audio_fp, format='audio/mp3')
+        tts = gTTS(selected_word, lang='en')
+        audio_fp = BytesIO()
+        tts.write_to_fp(audio_fp)
+        audio_fp.seek(0)
+        st.audio(audio_fp, format='audio/mp3')
 
 with tab2:
     st.write("Wordle game placeholder")
