@@ -126,8 +126,3 @@ def text_to_speech(text):
     tts.write_to_fp(audio_bytes)
     audio_bytes.seek(0)
     return audio_bytes
-
-# Example usage in one of the tabs (e.g., to read a definition or example)
-if st.button("Read Definition"):
-    audio_bytes = text_to_speech(st.session_state.definition)
-    st.audio(audio_bytes, format='audio/mp3')
