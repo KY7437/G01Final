@@ -10,7 +10,7 @@ st.write("🌱 Vocabulary learning")
 tab1, tab2, tab3 = st.tabs(["❄️ Word List", "❄️ 2. Wordle", "❄️ 3. Role Playing"])
 
 with tab1:
-    st.markdown("### 📋 Word Frequency Table")
+    st.markdown("### 📋 Word List")
 
     # Load CSV from GitHub
     url = "https://raw.githubusercontent.com/KY7437/G01Final/refs/heads/main/wordlist.csv"
