@@ -27,6 +27,13 @@ with tab1:
         audio_bytes = text_to_speech(predefined_text)
         # Use Streamlit's audio component to play the audio file
         st.audio(audio_bytes, format="audio/mp3")
+      st.title("🔊 Word Pronunciation Practice")
+    if selected_word:
+      tts = gTTS(selected_word, lang='en')
+      audio_fp = BytesIO()
+      tts.write_to_fp(audio_fp)
+      audio_fp.seek(0)
+      st.audio(audio_fp, format='audio/mp3')
 
 with tab2:
     st.write("Wordle game placeholder")
