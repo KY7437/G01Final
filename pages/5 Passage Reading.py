@@ -2,7 +2,7 @@ import streamlit as st
 from gtts import gTTS
 from io import BytesIO
 
-st.Title("Passage Reading")
+st.title("Passage Reading")
 
 # Define tabs
 tab1, tab2, tab3 = st.tabs(["❄️ TTS", "❄️ 2. gg", "❄️ 3. gg"])
