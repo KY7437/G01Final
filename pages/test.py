@@ -40,6 +40,7 @@ if "shuffled_questions" not in st.session_state:
     st.session_state.shuffled_questions = random.sample(questions_data, len(questions_data))
     st.session_state.current_question = 0
     st.session_state.answers = [None] * len(questions_data)
+    st.session_state.answer_submitted = [False] * len(questions_data)
 
 # Navigation
 q_index = st.session_state.current_question
@@ -52,11 +53,13 @@ st.write(question["question"])
 # Answer input
 selected = st.radio("Choose your answer:", ["True", "False"], index=0 if st.session_state.answers[q_index] is None else (0 if st.session_state.answers[q_index] else 1))
 
+# Submit answer
 if st.button("Submit Answer"):
     st.session_state.answers[q_index] = (selected == "True")
+    st.session_state.answer_submitted[q_index] = True
 
 # Feedback
-if st.session_state.answers[q_index] is not None:
+if st.session_state.answer_submitted[q_index]:
     correct = question["answer"]
     if st.session_state.answers[q_index] == correct:
         st.success("Correct!")
@@ -70,12 +73,14 @@ col1, col2, col3 = st.columns(3)
 with col1:
     if st.button("Previous", disabled=(q_index == 0)):
         st.session_state.current_question -= 1
+        st.session_state.answer_submitted[q_index] = False  # Reset the submission flag
 
 with col2:
-    # Disable "Next" if the current answer is not submitted yet
-    if st.session_state.answers[q_index] is not None:
+    # Enable "Next" button only after submitting an answer
+    if st.session_state.answer_submitted[q_index]:
         if st.button("Next", disabled=(q_index == len(questions_data) - 1)):
             st.session_state.current_question += 1
+            st.session_state.answer_submitted[q_index] = False  # Reset the submission flag
 
 with col3:
     if st.button("Show Score"):
