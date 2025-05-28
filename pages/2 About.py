@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.write("In the end of this lesson,")
+st.header("In the end of this lesson,")
 
 st.write("""
 - Students will be able to understand the passage.
