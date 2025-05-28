@@ -86,43 +86,92 @@ with tab2:
                 st.session_state.guessed = True
 
 with tab3:
-    # Grammar example sentence dictionary
-    EXPRESSION_DB = {
-        "that": {
-            "examples": [
-                "A: Did you watch the movie that I recommended yesterday?",
-                "B: Yes, I did! I loved the part that shows the main character’s childhood.",
-                "A: Me too! The scene that made me cry was at the end.",
-                "B: Same here. I think it’s a movie that everyone should watch."
-            ]
-        },
-        "be p.p": {
-            "examples": [
-                "A: Did you hear? Our classroom was cleaned yesterday.",
-                "B: Really? It looks so much better now.",
-                "A: Yeah, and new computers were installed this morning.",
-                "B: That’s great! I heard the old ones were broken last week.",
-                "A: Right. The whole room was redesigned by the school’s tech team."
-            ]
-        }
+   import streamlit as st
+from gtts import gTTS
+import tempfile
+import os
+
+# 문법 예문 및 설명 데이터베이스
+EXPRESSION_DB = {
+    "that": {
+        "examples": [
+            "A: Did you watch the movie that I recommended yesterday?",
+            "B: Yes, I did! I loved the part that shows the main character’s childhood.",
+            "A: Me too! The scene that made me cry was at the end.",
+            "B: Same here. I think it’s a movie that everyone should watch."
+        ]
+    },
+    "be p.p": {
+        "examples": [
+            "A: Did you hear? Our classroom was cleaned yesterday.",
+            "B: Really? It looks so much better now.",
+            "A: Yeah, and new computers were installed this morning.",
+            "B: That’s great! I heard the old ones were broken last week.",
+            "A: Right. The whole room was redesigned by the school’s tech team."
+        ]
     }
+}
 
-    # Input expression
-    expression = st.text_input("📝 Enter expressions (ex. that, be p.p): ").strip().lower()
+# 문법 설명
+EXPRESSION_INFO = {
+    "that": {
+        "description": (
+            "**Relative pronoun 'that'** is used to connect a noun to a clause that gives more information about it.\n\n"
+            "Example: *The book that I read was very interesting.*"
+        )
+    },
+    "be p.p": {
+        "description": (
+            "**Passive voice 'be + past participle' (be p.p)** is used when the subject receives the action.\n\n"
+            "Example: *The window was broken by the wind.*"
+        )
+    }
+}
 
-    # Output results
-    if expression in EXPRESSION_DB:
-        data = EXPRESSION_DB[expression]
-        st.write("🗣️ Sample sentences:")
-        for ex in data["examples"]:
-            st.write(f"- {ex}")
-    else:
-        st.write("⚠️ Please use expressions we used in class!!")
+# 제목
+st.title("🎭 Middle School Roleplay Dialog App")
+st.markdown("Select a grammar expression to hear a conversation. You can reveal the text if needed!")
 
-# Example TTS function (place where you might integrate TTS)
-def text_to_speech(text):
-    tts = gTTS(text, lang='en')
-    audio_bytes = BytesIO()
-    tts.write_to_fp(audio_bytes)
-    audio_bytes.seek(0)
-    return audio_bytes
+# 문법 선택
+expression = st.selectbox("🔤 Choose a grammar expression:", list(EXPRESSION_DB.keys()))
+
+# 문법 설명 표시
+st.markdown("### 📘 Grammar Explanation")
+st.markdown(EXPRESSION_INFO[expression]["description"])
+
+# TTS 재생
+if st.button("▶️ Listen to the dialogue"):
+    examples = EXPRESSION_DB[expression]["examples"]
+    full_text = " ".join(examples)
+    tts = gTTS(full_text)
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as fp:
+        tts.save(fp.name)
+        st.audio(fp.name, format="audio/mp3")
+
+    st.session_state["show_text"] = False
+
+# 대화문 보기
+if "show_text" not in st.session_state:
+    st.session_state["show_text"] = False
+
+if st.button("👀 Show the dialogue text"):
+    st.session_state["show_text"] = True
+
+if st.session_state["show_text"]:
+    examples = EXPRESSION_DB[expression]["examples"]
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("👤 A")
+        for line in examples:
+            if line.startswith("A:"):
+                st.write(line[3:])
+            else:
+                st.write("")
+    with col2:
+        st.subheader("🧑 B")
+        for line in examples:
+            if line.startswith("B:"):
+                st.write(line[3:])
+            else:
+                st.write("")
+
