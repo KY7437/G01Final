@@ -7,7 +7,7 @@ import tempfile
 st.write("🌱 Vocabulary Learning")
 
 # Define tabs
-tab1, tab2, tab3 = st.tabs(["❄️ Word List", "❄️ Knowledge Map", "❄️ Role Playing"])
+tab1, tab2, tab3 = st.tabs(["❄️ Word List", "❄️ Knowledge Map", "❄️ Meaning Master, ❄️"Spelling Master])
 
 with tab1:
     st.markdown("### 📋 Word List")
@@ -84,3 +84,9 @@ if st.button("Generate Knowledge Map") and keyword:
             st.error("관련 단어를 불러오는 데 실패했습니다.")
 
 streamlit run knowledge_map.py
+
+with tab3:
+    st.header("Meaning Master")
+
+with tab4:
+    st.header("Spelling Master")
