@@ -9,7 +9,6 @@ from pyvis.network import Network
 import networkx as nx
 
 # 🔑 Set OpenAI API Key
-openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Define tabs
 tab1, tab2, tab3, tab4 = st.tabs(["❄️ Word List", "❄️ Knowledge Map", "❄️ Meaning Master", "❄️ Spelling Master"])
