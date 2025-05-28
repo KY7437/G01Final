@@ -72,8 +72,10 @@ with col1:
         st.session_state.current_question -= 1
 
 with col2:
-    if st.button("Next", disabled=(q_index == len(questions_data) - 1)):
-        st.session_state.current_question += 1
+    # Disable "Next" if the current answer is not submitted yet
+    if st.session_state.answers[q_index] is not None:
+        if st.button("Next", disabled=(q_index == len(questions_data) - 1)):
+            st.session_state.current_question += 1
 
 with col3:
     if st.button("Show Score"):
@@ -82,4 +84,3 @@ with col3:
             if st.session_state.answers[i] == q["answer"]
         )
         st.success(f"You scored {correct_count} out of {len(questions_data)}")
-     
