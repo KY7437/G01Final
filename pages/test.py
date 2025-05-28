@@ -79,8 +79,12 @@ with col2:
     # Enable "Next" button only after submitting an answer
     if st.session_state.answer_submitted[q_index]:
         if st.button("Next", disabled=(q_index == len(questions_data) - 1)):
+            # Move to next question immediately after submission
             st.session_state.current_question += 1
-            st.session_state.answer_submitted[q_index] = False  # Reset the submission flag
+            # Reset the submission flag for the new question
+            st.session_state.answer_submitted[q_index] = False
+            # Force a rerun to apply changes immediately
+            st.experimental_rerun()
 
 with col3:
     if st.button("Show Score"):
