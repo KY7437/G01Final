@@ -27,118 +27,70 @@ with tab1:
         st.error(f"Error loading word list: {e}")
 
 with tab2:
-    st.markdown("### 🧠 Knowledge Map")
-    
-    # 🌐 Fetch related concepts with GPT
-    def get_related_words(word):
-        prompt = f'Give me 8 conceptually related English words to "{word}" as a JSON list.'
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.7
-        )
-        content = response['choices'][0]['message']['content']
-        try:
-            return eval(content)
-        except:
-            return []
+    import tkinter as tk
 
-    # 🕸️ Create knowledge map
-    def create_knowledge_map(center_word, related_words):
-        G = nx.Graph()
-        G.add_node(center_word)
-        for w in related_words:
-            G.add_node(w)
-            G.add_edge(center_word, w)
+# 🔤 단어 리스트 (단어, 뜻)
+word_list = [
+    ("apple", "사과"),
+    ("run", "달리다"),
+    ("book", "책"),
+    ("happy", "행복한"),
+    ("teacher", "선생님"),
+    ("water", "물"),
+]
 
-        net = Network(height="600px", width="100%", bgcolor="#ffffff", font_color="black")
-        net.from_nx(G)
-        return net
+class FlashcardApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("🃏 영어 단어 카드 뒤집기 게임")
+        self.cards = []
 
-    # 🖼️ Display map in Streamlit
-    def show_map_in_streamlit(net):
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as f:
-            path = f.name
-            net.save_graph(path)
-            with open(path, 'r', encoding='utf-8') as file:
-                html = file.read()
-            st.components.v1.html(html, height=620, scrolling=True)
+        # 🧱 카드 프레임
+        self.frame = tk.Frame(root, bg="white")
+        self.frame.pack(padx=20, pady=20)
 
-    st.title("🧠 Knowledge Map App")
-    keyword = st.text_input("Enter a keyword (English):", "")
+        self.create_cards()
 
-    if st.button("Generate Knowledge Map") and keyword:
-        with st.spinner("Fetching related concepts..."):
-            related = get_related_words(keyword)
-            if related:
-                st.success(f"Concepts related to '{keyword}': {', '.join(related)}")
-                net = create_knowledge_map(keyword, related)
-                show_map_in_streamlit(net)
-            else:
-                st.error("Failed to fetch related words.")
+        # 🔁 리셋 버튼
+        reset_btn = tk.Button(root, text="🔄 전체 리셋", command=self.reset_cards, font=("Arial", 12))
+        reset_btn.pack(pady=10)
 
-def load_vocab():
-    url = "https://raw.githubusercontent.com/KY7437/G01Final/main/wordlist.csv"
-    df = pd.read_csv(url)
-    vocab_dict = dict(zip(df["Word"], df["Meaning"])) 
-    return vocab_dict
+    def create_cards(self):
+        for idx, (word, meaning) in enumerate(word_list):
+            card = tk.Button(
+                self.frame,
+                text=word,
+                width=20,
+                height=3,
+                font=("Arial", 14),
+                relief="raised",
+                bg="#f2f2f2",
+                command=lambda i=idx: self.flip_card(i)
+            )
+            row = idx // 3
+            col = idx % 3
+            card.grid(row=row, column=col, padx=10, pady=10)
+            self.cards.append({"button": card, "word": word, "meaning": meaning, "flipped": False})
 
-vocab = load_vocab()
-
-def vocabulary_quiz(tab_name, question_type):
-    st.header(tab_name)
-
-    # Initialize session state
-    if "quiz_items" not in st.session_state:
-        st.session_state.quiz_items = random.sample(list(vocab.items()), 5)
-        st.session_state.current_q = 0
-        st.session_state.score = 0
-        st.session_state.show_result = False
-        st.session_state.user_input = ""
-
-    st.title(f"📖 {tab_name} Quiz")
-
-    # Display current question
-    if st.session_state.current_q < len(st.session_state.quiz_items):
-        if question_type == "meaning":
-            word, correct_answer = st.session_state.quiz_items[st.session_state.current_q]
-            st.write(f"**Word:** {word}")
-            prompt = "Enter the Korean meaning:"
+    def flip_card(self, index):
+        card = self.cards[index]
+        if card["flipped"]:
+            card["button"]["text"] = card["word"]
+            card["flipped"] = False
         else:
-            correct_answer, meaning = st.session_state.quiz_items[st.session_state.current_q]
-            st.write(f"**Meaning:** {meaning}")
-            prompt = "Enter the English word:"
+            card["button"]["text"] = card["meaning"]
+            card["flipped"] = True
 
-        user_input = st.text_input(prompt, key=f"input_{st.session_state.current_q}")
+    def reset_cards(self):
+        for card in self.cards:
+            card["button"]["text"] = card["word"]
+            card["flipped"] = False
 
-        if st.button("Submit", key=f"submit_{st.session_state.current_q}") and not st.session_state.show_result:
-            st.session_state.user_input = user_input.strip().lower()
-            st.session_state.show_result = True
-
-        if st.session_state.show_result:
-            if st.session_state.user_input == correct_answer.strip().lower():
-                st.success("✅ Correct!")
-                st.session_state.score += 1
-            else:
-                st.error(f"❌ Incorrect! The correct answer was **{correct_answer}**.")
-
-            if st.button("Next"):
-                st.session_state.current_q += 1
-                st.session_state.show_result = False
-                st.rerun()
-
-    # Final score
-    else:
-        st.subheader("🎉 Quiz Finished!")
-        st.write(f"Your total score is: **{st.session_state.score} / {len(st.session_state.quiz_items)}**")
-
-        if st.button("Play Again"):
-            st.session_state.quiz_items = random.sample(list(vocab.items()), 5)
-            st.session_state.current_q = 0
-            st.session_state.score = 0
-            st.session_state.show_result = False
-            st.session_state.user_input = ""
-            st.rerun()
+# 🎬 실행
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = FlashcardApp(root)
+    root.mainloop()
 
 with tab3:
     vocabulary_quiz("Meaning Master", "meaning")
