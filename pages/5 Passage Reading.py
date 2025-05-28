@@ -47,7 +47,7 @@ with tab1:
         st.write(predefined_text)
 
 with tab2:
-    st.write("Wordle game placeholder")
+    st.write("W")
 
 with tab3:
-    st.write("Role Playing placeholder")
+    st.write("R")
