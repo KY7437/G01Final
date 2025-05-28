@@ -17,75 +17,83 @@ with tab1:
     st.markdown("Decide whether each statement is **True or False** based on the story.")
 
     questions_data = [
-        {"question": "Sarah is a 15-year-old girl who sneaks into the library during the day.", "answer": False,
-         "explanation": "Sarah sneaks into the library at night, not during the day."},
-        {"question": "The library in Willowby is said to be enchanted.", "answer": True,
-         "explanation": "The story clearly describes the library as rumored to be enchanted."},
-        {"question": "At midnight, the characters in the books come to life and talk.", "answer": True,
-         "explanation": "At midnight, the books whisper and characters step out of the pages."},
-        {"question": "Sarah met Harry Potter in the Midnight Library.", "answer": False,
-         "explanation": "Harry Potter is not mentioned; she met characters like Alice and pirates from Treasure Island."},
-        {"question": "The characters return to their pages as dawn approaches.", "answer": True,
-         "explanation": "As dawn approaches, the characters return to their pages."}
+        {
+            "question": "Sarah is a 15-year-old girl who sneaks into the library during the day.",
+            "answer": False,
+            "explanation": "Sarah sneaks into the library at night, not during the day."
+        },
+        {
+            "question": "The library in Willowby is said to be enchanted.",
+            "answer": True,
+            "explanation": "The story clearly describes the library as rumored to be enchanted."
+        },
+        {
+            "question": "At midnight, the characters in the books come to life and talk.",
+            "answer": True,
+            "explanation": "At midnight, the books whisper and characters step out of the pages."
+        },
+        {
+            "question": "Sarah met Harry Potter in the Midnight Library.",
+            "answer": False,
+            "explanation": "Harry Potter is not mentioned; she met characters like Alice and pirates from Treasure Island."
+        },
+        {
+            "question": "The characters return to their pages as dawn approaches.",
+            "answer": True,
+            "explanation": "As dawn approaches, the characters return to their pages."
+        }
     ]
 
-    if "shuffled_questions" not in st.session_state:
-        st.session_state.shuffled_questions = random.sample(questions_data, len(questions_data))
-        st.session_state.current_question = 0
-        st.session_state.answers = [None] * len(questions_data)
-        st.session_state.answer_submitted = [False] * len(questions_data)
+    if "tf_quiz" not in st.session_state:
+        st.session_state.tf_quiz = random.sample(questions_data, len(questions_data))
+        st.session_state.tf_index = 0
+        st.session_state.tf_answers = [None] * len(questions_data)
+        st.session_state.tf_submitted = [False] * len(questions_data)
 
-    q_index = st.session_state.current_question
-    question = st.session_state.shuffled_questions[q_index]
+    index = st.session_state.tf_index
+    q = st.session_state.tf_quiz[index]
 
-    st.subheader(f"Question {q_index + 1} of {len(questions_data)}")
-    st.write(question["question"])
+    st.subheader(f"Question {index + 1} of {len(questions_data)}")
+    st.write(q["question"])
 
     selected = st.radio("Choose your answer:", ["True", "False"],
-                        index=0 if st.session_state.answers[q_index] is None
-                        else (0 if st.session_state.answers[q_index] else 1),
-                        key=f"radio_tf_{q_index}")
+                        index=0 if st.session_state.tf_answers[index] is None else (0 if st.session_state.tf_answers[index] else 1),
+                        key=f"tf_radio_{index}")
 
-    if st.button("Submit Answer", key="submit_tf"):
-        st.session_state.answers[q_index] = (selected == "True")
-        st.session_state.answer_submitted[q_index] = True
+    if st.button("Submit Answer", key=f"tf_submit_{index}"):
+        st.session_state.tf_answers[index] = (selected == "True")
+        st.session_state.tf_submitted[index] = True
 
-    if st.session_state.answer_submitted[q_index]:
-        correct = question["answer"]
-        if st.session_state.answers[q_index] == correct:
+    if st.session_state.tf_submitted[index]:
+        if st.session_state.tf_answers[index] == q["answer"]:
             st.success("Correct!")
         else:
             st.error("Incorrect.")
-        st.info(f"Explanation: {question['explanation']}")
+        st.info(f"Explanation: {q['explanation']}")
 
     col1, col2, col3, col4 = st.columns(4)
-
     with col1:
-        if st.button("Previous", disabled=(q_index == 0), key="prev_tf"):
-            st.session_state.current_question -= 1
+        if st.button("Previous", disabled=(index == 0), key="tf_prev"):
+            st.session_state.tf_index -= 1
             st.rerun()
-
     with col2:
-        if st.session_state.answer_submitted[q_index]:
-            if st.button("Next", disabled=(q_index == len(questions_data) - 1), key="next_tf"):
-                st.session_state.current_question += 1
-                st.rerun()
-
+        if st.button("Next", disabled=(index == len(questions_data) - 1), key="tf_next"):
+            st.session_state.tf_index += 1
+            st.rerun()
     with col3:
-        if st.button("Show Score", key="score_tf"):
-            correct_count = sum(
-                1 for i, q in enumerate(st.session_state.shuffled_questions)
-                if st.session_state.answers[i] == q["answer"]
+        if st.button("Show Score", key="tf_score"):
+            score = sum(
+                1 for i, q in enumerate(st.session_state.tf_quiz)
+                if st.session_state.tf_answers[i] == q["answer"]
             )
-            st.success(f"You scored {correct_count} out of {len(questions_data)}")
-
+            st.success(f"You scored {score} / {len(questions_data)}")
     with col4:
-        if st.button("Reset Quiz", key="reset_tf"):
-            for k in ["shuffled_questions", "current_question", "answers", "answer_submitted"]:
+        if st.button("Reset Quiz", key="tf_reset"):
+            for k in ["tf_quiz", "tf_index", "tf_answers", "tf_submitted"]:
                 st.session_state.pop(k, None)
             st.experimental_rerun()
 
-## ------------------- TAB 2 -------------------
+# ------------------- TAB 2 -------------------
 with tab2:
     st.header("Verb Form Quiz (Level 2)")
 
@@ -109,60 +117,56 @@ with tab2:
         st.session_state.verb_answers = [None] * len(verb_data)
         st.session_state.verb_submitted = [False] * len(verb_data)
 
-    index = st.session_state.verb_index
-    current_verb = st.session_state.verb_quiz[index]
-    mode = st.session_state.verb_mode[index]
-    correct_answer = current_verb[mode]
+    v_index = st.session_state.verb_index
+    current = st.session_state.verb_quiz[v_index]
+    mode = st.session_state.verb_mode[v_index]
+    correct = current[mode]
 
     mode_label = "Past" if mode == "past" else "Past Participle"
-    st.markdown(f"### {current_verb['base']} ({mode_label})")
+    st.markdown(f"### {current['base']} ({mode_label})")
 
-    user_input = st.text_input("Enter the correct form:", value="" if st.session_state.verb_answers[index] is None else st.session_state.verb_answers[index],
-                               key=f"input_verb_{index}")
+    user_input = st.text_input("Enter the correct form:",
+                               value="" if st.session_state.verb_answers[v_index] is None else st.session_state.verb_answers[v_index],
+                               key=f"verb_input_{v_index}")
 
-    if st.button("Submit Answer", key="submit_verb"):
-        st.session_state.verb_answers[index] = user_input.strip()
-        st.session_state.verb_submitted[index] = True
+    if st.button("Submit Answer", key=f"verb_submit_{v_index}"):
+        st.session_state.verb_answers[v_index] = user_input.strip()
+        st.session_state.verb_submitted[v_index] = True
 
-    if st.session_state.verb_submitted[index]:
-        if user_input.strip().lower() == correct_answer.lower():
+    if st.session_state.verb_submitted[v_index]:
+        if user_input.strip().lower() == correct.lower():
             st.success("Correct!")
         else:
-            st.error(f"Incorrect. The correct answer is: **{correct_answer}**")
+            st.error(f"Incorrect. The correct answer is: **{correct}**")
 
     col1, col2, col3, col4 = st.columns(4)
-
     with col1:
-        if st.button("Previous", disabled=(index == 0), key="prev_verb"):
+        if st.button("Previous", disabled=(v_index == 0), key="verb_prev"):
             st.session_state.verb_index -= 1
             st.rerun()
-
     with col2:
-        if st.button("Next", disabled=(index == len(verb_data) - 1), key="next_verb"):
+        if st.button("Next", disabled=(v_index == len(verb_data) - 1), key="verb_next"):
             st.session_state.verb_index += 1
             st.rerun()
-
     with col3:
-        if st.button("Show Score", key="score_verb"):
+        if st.button("Show Score", key="verb_score"):
             score = sum(
                 1 for i, v in enumerate(st.session_state.verb_quiz)
                 if st.session_state.verb_answers[i]
                 and st.session_state.verb_answers[i].strip().lower() == v[st.session_state.verb_mode[i]].lower()
             )
             st.success(f"Your score: {score} / {len(verb_data)}")
-
     with col4:
-        if st.button("Reset Quiz", key="reset_verb"):
+        if st.button("Reset Quiz", key="verb_reset"):
             for k in ["verb_quiz", "verb_index", "verb_mode", "verb_answers", "verb_submitted"]:
                 st.session_state.pop(k, None)
             st.experimental_rerun()
 
 # ------------------- TAB 3 -------------------
 with tab3:
-    st.header("Level 3 Content")
-    st.write("Text-to-Speech Demo:")
-    text = st.text_input("Enter text for TTS:", "Hello, Streamlit!", key="tts_input")
-    if st.button("Generate TTS", key="tts_btn"):
+    st.header("Text-to-Speech Demo")
+    text = st.text_input("Enter text for TTS:", "Hello, Streamlit!")
+    if st.button("Generate TTS", key="tts_button"):
         tts = gTTS(text)
         tts_bytes = BytesIO()
         tts.write_to_fp(tts_bytes)
