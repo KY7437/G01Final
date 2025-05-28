@@ -84,7 +84,7 @@ with col2:
             # Reset the submission flag for the new question
             st.session_state.answer_submitted[q_index] = False
             # Force a rerun to apply changes immediately
-            st.experimental_rerun()
+            st.rerun()
 
 with col3:
     if st.button("Show Score"):
