@@ -4,8 +4,6 @@ from gtts import gTTS
 from io import BytesIO
 import tempfile
 
-st.write("🌱 Vocabulary Learning")
-
 # Define tabs
 tab1, tab2, tab3 = st.tabs(["❄️ Word List", "❄️ Knowledge Map", "❄️ Meaning Master", "❄️Spelling Master"])
 
