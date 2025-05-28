@@ -39,10 +39,10 @@ def get_tts():
 
 # Main function for the Streamlit app
 def main():
-    st.title("🌱 Vocabulary Learning")
+    st.title("Grammar")
 
     # Define tabs
-    tab1, tab2, tab3, tab4 = st.tabs(["❄️ Read after TTS", "❄️ Tab 2", "❄️ Tab 3", "❄️ Tab 4"])
+    tab1, tab2, tab3, tab4 = st.tabs(["❄️ Read after TTS", "❄️ Role Play", "❄️ Tab 3", "❄️ Tab 4"])
 
     # Content for the first tab
     with tab1:
