@@ -22,69 +22,79 @@ with tab1:
         st.dataframe(df, use_container_width=True)
 
 with tab2:
-    # Core words dictionary
-    core_words = {
-        "magic": "a special power that makes impossible things happen",
-        "library": "a place where you can read or borrow books",
-        "adventure": "an exciting or unusual experience",
-        "secret": "something that you do not tell other people",
-        "listen": "to pay attention to sounds or words",
-        "sneak": "to go somewhere quietly and secretly"
-    }
 
-    word_list = [
-        "magic", "library", "adventure", "secret", "listen", "sneak",
-        "midnight", "character", "change", "inspire", "pirate",
-        "council", "tale", "wisdom", "leave", "story", "approach",
-        "curious", "dawn", "keep", "promise", "change", "return",
-        "learn", "whole", "spend", "contain", "wisdom", "discuss", "join", "invite",
-        "island", "treasure", "decide", "bring", "curious", "enchant", "stand", "rumor"
-    ]
+    npm install vis-network
 
-    # Set up session state for the Wordle game
-    if 'answer' not in st.session_state:
-        st.session_state.answer = random.choice(list(core_words.keys()))
-        st.session_state.definition = core_words[st.session_state.answer]
-        st.session_state.attempts = 0
-        st.session_state.max_attempts = 6
-        st.session_state.guessed = False
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Knowledge Map</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style>
+    #network { width: 100%; height: 600px; border: 1px solid lightgray; }
+  </style>
+</head>
+<body>
 
-    def compare_words(guess, answer):
-        result = []
-        for i in range(len(guess)):
-            if i < len(answer) and guess[i] == answer[i]:
-                result.append("🟩")
-            elif guess[i] in answer:
-                result.append("🟨")
-            else:
-                result.append("⬛")
-        return "".join(result)
+<h2>🧠 지식 연결 지도 (Knowledge Map)</h2>
+<input type="text" id="keyword" placeholder="Enter a word (e.g., evolution)" />
+<button onclick="generateMap()">Generate Map</button>
 
-    st.title("Wordle Game")
-    st.write(f"Hint: Definition - {st.session_state.definition}")
-    st.write(f"The word has {len(st.session_state.answer)} letters.")
-    st.write(f"You have {st.session_state.max_attempts - st.session_state.attempts} attempts left.")
+<div id="network"></div>
 
-    guess = st.text_input("Enter your guess:")
+<script>
+const OPENAI_API_KEY = "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"; // 여기에 본인 API 키 넣기
 
-    if st.button("Submit") and guess:
-        guess = guess.lower()
-        if guess not in word_list:
-            st.warning("Please guess a valid word from the list.")
-        elif st.session_state.guessed:
-            st.info("You already guessed the word! Please restart the app to play again.")
-        else:
-            st.session_state.attempts += 1
-            feedback = compare_words(guess, st.session_state.answer)
-            st.write(f"Result: {feedback}")
-            if guess == st.session_state.answer:
-                st.success(f"Correct! The word is '{st.session_state.answer.upper()}'.")
-                st.write(f"Meaning: {st.session_state.definition}")
-                st.session_state.guessed = True
-            elif st.session_state.attempts >= st.session_state.max_attempts:
-                st.error(f"Sorry, you used all attempts. The word was '{st.session_state.answer.upper()}'.")
-                st.write(f"Meaning: {st.session_state.definition}")
-                st.session_state.guessed = True
+async function getRelatedConcepts(word) {
+  const prompt = `Give me 8 related concepts to the English word "${word}" in JSON array format. Example: ["biology", "Darwin", "natural selection"]`;
+
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: "gpt-4",
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.7
+    })
+  });
+
+  const data = await res.json();
+  try {
+    return JSON.parse(data.choices[0].message.content);
+  } catch (e) {
+    console.error("GPT 응답 파싱 오류:", data);
+    return [];
+  }
+}
+
+async function generateMap() {
+  const word = document.getElementById("keyword").value.trim();
+  if (!word) return alert("Please enter a word!");
+
+  const related = await getRelatedConcepts(word);
+  const nodes = [{ id: 0, label: word, color: '#ffcc00' }];
+  const edges = [];
+
+  related.forEach((item, i) => {
+    nodes.push({ id: i + 1, label: item });
+    edges.push({ from: 0, to: i + 1 });
+  });
+
+  const container = document.getElementById("network");
+  const data = { nodes: new vis.DataSet(nodes), edges: new vis.DataSet(edges) };
+  const options = { nodes: { shape: "dot", size: 20 }, physics: { stabilization: false } };
+  new vis.Network(container, data, options);
+}
+</script>
+
+</body>
+</html>
+
+
 
 with tab3:
     # Grammar expression and dialogue database
