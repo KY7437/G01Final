@@ -9,7 +9,7 @@ tab1, tab2, tab3 = st.tabs(["❄️ TTS", "❄️ 2. gg", "❄️ 3. gg"])
 
 with tab1:
      url="https://github.com/KY7437/G01Final/raw/main/data/story01.png"
-    st.image(url, caption="Lesson 1", width=300)  # width in pixel
+     st.image(url, caption="Lesson 1", width=300)  # width in pixel
 
     # Function to convert text to speech
     def text_to_speech(text):
