@@ -24,90 +24,61 @@ with tab1:
 with tab2:
     st.markdown("### 🧠 Knowledge Map")
     st.write("Knowledge Map functionality is under development.")
+import streamlit as st
+import openai
+from pyvis.network import Network
+import networkx as nx
+import os
+import tempfile
 
-    # Here, you might want to embed the HTML using streamlit.components.v1.html
-    # Since you cannot directly execute HTML/JS like a typical web server.
-    # Example:
-    # st.components.v1.html("<html>Your HTML content here</html>", height=600)
+# 🔑 OpenAI API Key 설정
+openai.api_key = st.secrets["OPENAI_API_KEY"] if "OPENAI_API_KEY" in st.secrets else "sk-여기에_키_붙여넣기"
 
-with tab3:
-    # Grammar expression and dialogue database
-    EXPRESSION_DB = {
-        "that": {
-            "examples": [
-                "A: Did you watch the movie that I recommended yesterday?",
-                "B: Yes, I did! I loved the part that shows the main character’s childhood.",
-                "A: Me too! The scene that made me cry was at the end.",
-                "B: Same here. I think it’s a movie that everyone should watch."
-            ]
-        },
-        "be p.p": {
-            "examples": [
-                "A: Did you hear? Our classroom was cleaned yesterday.",
-                "B: Really? It looks so much better now.",
-                "A: Yeah, and new computers were installed this morning.",
-                "B: That’s great! I heard the old ones were broken last week.",
-                "A: Right. The whole room was redesigned by the school’s tech team."
-            ]
-        }
-    }
+# 🌐 GPT로 관련 개념 받아오기
+def get_related_words(word):
+    prompt = f'Give me 8 conceptually related English words to "{word}" as a JSON list.'
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7
+    )
+    content = response['choices'][0]['message']['content']
+    try:
+        return eval(content)
+    except:
+        return []
 
-    # Grammar explanation
-    EXPRESSION_INFO = {
-        "that": {
-            "description": (
-                "**Relative pronoun 'that'** is used to connect a noun to a clause that gives more information about it.\n\n"
-                "Example: *The book that I read was very interesting.*"
-            )
-        },
-        "be p.p": {
-            "description": (
-                "**Passive voice 'be + past participle' (be p.p)** is used when the subject receives the action.\n\n"
-                "Example: *The window was broken by the wind.*"
-            )
-        }
-    }
+# 🕸️ 지식 연결 지도 만들기
+def create_knowledge_map(center_word, related_words):
+    G = nx.Graph()
+    G.add_node(center_word)
+    for w in related_words:
+        G.add_node(w)
+        G.add_edge(center_word, w)
 
-    st.title("🎭Roleplay Dialog App")
-    st.markdown("Select a grammar expression to hear a conversation. You can reveal the text if needed!")
+    net = Network(height="600px", width="100%", bgcolor="#ffffff", font_color="black")
+    net.from_nx(G)
+    return net
 
-    # Select grammar expression
-    expression = st.selectbox("🔤 Choose a grammar expression:", list(EXPRESSION_DB.keys()))
+# 🖼️ HTML로 시각화
+def show_map_in_streamlit(net):
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".html") as f:
+        path = f.name
+        net.save_graph(path)
+        with open(path, 'r', encoding='utf-8') as file:
+            html = file.read()
+        st.components.v1.html(html, height=620, scrolling=True)
 
-    # Display grammar explanation
-    st.markdown("### 📘 Grammar Explanation")
-    st.markdown(EXPRESSION_INFO[expression]["description"])
+# 🎯 Streamlit UI 구성
+st.title("🧠 지식 연결 지도 앱")
+keyword = st.text_input("Enter a keyword (English):", "")
 
-    # TTS playback
-    if st.button("▶️ Listen to the dialogue"):
-        examples = EXPRESSION_DB[expression]["examples"]
-        full_text = " ".join(examples)
-        tts = gTTS(full_text)
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as fp:
-            tts.save(fp.name)
-            st.audio(fp.name, format="audio/mp3")
-
-    # Show dialogue text
-    if "show_text" not in st.session_state:
-        st.session_state["show_text"] = False
-
-    if st.button("👀 Show the dialogue text"):
-        st.session_state["show_text"] = not st.session_state["show_text"]
-
-    if st.session_state["show_text"]:
-        examples = EXPRESSION_DB[expression]["examples"]
-        col1, col2 = st.columns(2)
-        with col1:
-            st.subheader("👤 A")
-            for line in examples:
-                if line.startswith("A:"):
-                    st.write(line[3:])
-                else:
-                    st.write("")
-        with col2:
-            st.subheader("🧑 B")
-            for line in examples:
-                if line.startswith("B:"):
-                    st.write(line[3:])
-                else:
-                    st.write("")
+if st.button("Generate Knowledge Map") and keyword:
+    with st.spinner("GPT로 관련 개념을 불러오는 중..."):
+        related = get_related_words(keyword)
+        if related:
+            st.success(f"'{keyword}'와 관련된 개념: {', '.join(related)}")
+            net = create_knowledge_map(keyword, related)
+            show_map_in_streamlit(net)
+        else:
+            st.error("관련 단어를 불러오는 데 실패했습니다.")
