@@ -8,8 +8,8 @@ st.title("Passage Reading")
 tab1, tab2, tab3 = st.tabs(["❄️ TTS", "❄️ 2. gg", "❄️ 3. gg"])
 
 with tab1:
-     url="https://github.com/KY7437/G01Final/raw/main/data/story01.png"
-     st.image(url, caption="Lesson 1", width=300)  # width in pixel
+    url = "https://github.com/KY7437/G01Final/raw/main/data/story01.png"
+    st.image(url, caption="Lesson 1", width=500)  # width in pixels
 
     # Function to convert text to speech
     def text_to_speech(text):
@@ -36,7 +36,7 @@ with tab1:
 
     # Button to show the text
     if st.button("Show Text"):
-        st.session_state.show_text = True
+        st.session_state.show_text = not st.session_state.show_text  # Toggle text visibility
 
     # Play audio if the button has been pressed
     if st.session_state.play_audio:
@@ -48,8 +48,6 @@ with tab1:
     # Display text if the button has been pressed
     if st.session_state.show_text:
         st.write(predefined_text)
-
-   
 
 with tab2:
     st.write("W")
