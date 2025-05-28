@@ -125,7 +125,7 @@ with tab3:
     }
 
     # Title
-    st.title("🎭 Middle School Roleplay Dialog App")
+    st.title("🎭 Roleplay Dialog App")
     st.markdown("Select a grammar expression to hear a conversation. You can reveal the text if needed!")
 
     # Select grammar expression
