@@ -73,10 +73,10 @@ with tab1:
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        if st.button("Previous", key="tf_prev", disabled=(idx == 0)):
+        if st.button("Previous", key=f"tf_prev_{idx}", disabled=(idx == 0)):
             st.session_state.tf_current -= 1
     with col2:
-        if st.button("Next", key="tf_next", disabled=(idx == len(questions_data) - 1)):
+        if st.button("Next", key=f"tf_next_{idx}", disabled=(idx == len(questions_data) - 1)):
             st.session_state.tf_current += 1
     with col3:
         if st.button("Show Score", key="tf_score"):
@@ -133,10 +133,10 @@ with tab2:
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        if st.button("Previous", key="verb_prev", disabled=(vi == 0)):
+        if st.button("Previous", key=f"verb_prev_{vi}", disabled=(vi == 0)):
             st.session_state.verb_index -= 1
     with col2:
-        if st.button("Next", key="verb_next", disabled=(vi == len(verb_data) - 1)):
+        if st.button("Next", key=f"verb_next_{vi}", disabled=(vi == len(verb_data) - 1)):
             st.session_state.verb_index += 1
     with col3:
         if st.button("Show Score", key="verb_score"):
@@ -161,3 +161,4 @@ with tab3:
 with tab4:
     st.header("Paragraph TF - Coming Soon")
     st.write("You can add paragraph-based True/False questions here later.")
+
