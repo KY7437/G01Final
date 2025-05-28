@@ -3,12 +3,11 @@ import random
 from gtts import gTTS
 from io import BytesIO
 
-# 페이지 설정
 st.set_page_config(page_title="Review Check")
 
 st.title("Review Check")
 
-# 탭 정의
+# 탭 4개
 tab1, tab2, tab3, tab4 = st.tabs(["Paragraph-TF", "Grammar-Level 1", "Grammar-Level 2", "Grammar-Level 3"])
 
 # ------------------- TAB 1 -------------------
@@ -44,54 +43,48 @@ with tab1:
         }
     ]
 
-    if "tf_quiz" not in st.session_state:
-        st.session_state.tf_quiz = random.sample(questions_data, len(questions_data))
-        st.session_state.tf_index = 0
+    if "tf_current" not in st.session_state:
+        st.session_state.tf_questions = random.sample(questions_data, len(questions_data))
+        st.session_state.tf_current = 0
         st.session_state.tf_answers = [None] * len(questions_data)
         st.session_state.tf_submitted = [False] * len(questions_data)
 
-    index = st.session_state.tf_index
-    q = st.session_state.tf_quiz[index]
+    idx = st.session_state.tf_current
+    q = st.session_state.tf_questions[idx]
 
-    st.subheader(f"Question {index + 1} of {len(questions_data)}")
+    st.subheader(f"Question {idx + 1} of {len(questions_data)}")
     st.write(q["question"])
 
     selected = st.radio("Choose your answer:", ["True", "False"],
-                        index=0 if st.session_state.tf_answers[index] is None else (0 if st.session_state.tf_answers[index] else 1),
-                        key=f"tf_radio_{index}")
+                        index=0 if st.session_state.tf_answers[idx] is None else (0 if st.session_state.tf_answers[idx] else 1),
+                        key=f"tf_radio_{idx}")
 
-    if st.button("Submit Answer", key=f"tf_submit_{index}"):
-        st.session_state.tf_answers[index] = (selected == "True")
-        st.session_state.tf_submitted[index] = True
+    if st.button("Submit Answer", key=f"submit_tf_{idx}"):
+        st.session_state.tf_answers[idx] = (selected == "True")
+        st.session_state.tf_submitted[idx] = True
 
-    if st.session_state.tf_submitted[index]:
-        if st.session_state.tf_answers[index] == q["answer"]:
+    if st.session_state.tf_submitted[idx]:
+        correct = q["answer"]
+        if st.session_state.tf_answers[idx] == correct:
             st.success("Correct!")
         else:
             st.error("Incorrect.")
         st.info(f"Explanation: {q['explanation']}")
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3 = st.columns(3)
     with col1:
-        if st.button("Previous", disabled=(index == 0), key="tf_prev"):
-            st.session_state.tf_index -= 1
-            st.rerun()
+        if st.button("Previous", key="tf_prev", disabled=(idx == 0)):
+            st.session_state.tf_current -= 1
     with col2:
-        if st.button("Next", disabled=(index == len(questions_data) - 1), key="tf_next"):
-            st.session_state.tf_index += 1
-            st.rerun()
+        if st.button("Next", key="tf_next", disabled=(idx == len(questions_data) - 1)):
+            st.session_state.tf_current += 1
     with col3:
         if st.button("Show Score", key="tf_score"):
             score = sum(
-                1 for i, q in enumerate(st.session_state.tf_quiz)
+                1 for i, q in enumerate(st.session_state.tf_questions)
                 if st.session_state.tf_answers[i] == q["answer"]
             )
-            st.success(f"You scored {score} / {len(questions_data)}")
-    with col4:
-        if st.button("Reset Quiz", key="tf_reset"):
-            for k in ["tf_quiz", "tf_index", "tf_answers", "tf_submitted"]:
-                st.session_state.pop(k, None)
-            st.experimental_rerun()
+            st.success(f"Your score: {score} / {len(questions_data)}")
 
 # ------------------- TAB 2 -------------------
 with tab2:
@@ -110,62 +103,53 @@ with tab2:
         {"base": "begin", "past": "began", "pp": "begun"}
     ]
 
-    if "verb_quiz" not in st.session_state:
+    if "verb_index" not in st.session_state:
         st.session_state.verb_quiz = random.sample(verb_data, len(verb_data))
         st.session_state.verb_index = 0
         st.session_state.verb_mode = random.choices(["past", "pp"], k=len(verb_data))
         st.session_state.verb_answers = [None] * len(verb_data)
         st.session_state.verb_submitted = [False] * len(verb_data)
 
-    v_index = st.session_state.verb_index
-    current = st.session_state.verb_quiz[v_index]
-    mode = st.session_state.verb_mode[v_index]
-    correct = current[mode]
+    vi = st.session_state.verb_index
+    verb = st.session_state.verb_quiz[vi]
+    mode = st.session_state.verb_mode[vi]
+    label = "Past" if mode == "past" else "Past Participle"
 
-    mode_label = "Past" if mode == "past" else "Past Participle"
-    st.markdown(f"### {current['base']} ({mode_label})")
+    st.markdown(f"### {verb['base']} ({label})")
 
-    user_input = st.text_input("Enter the correct form:",
-                               value="" if st.session_state.verb_answers[v_index] is None else st.session_state.verb_answers[v_index],
-                               key=f"verb_input_{v_index}")
+    input_key = f"verb_input_{vi}"
+    answer = st.text_input("Your answer:", key=input_key)
 
-    if st.button("Submit Answer", key=f"verb_submit_{v_index}"):
-        st.session_state.verb_answers[v_index] = user_input.strip()
-        st.session_state.verb_submitted[v_index] = True
+    if st.button("Submit Answer", key=f"submit_verb_{vi}"):
+        st.session_state.verb_answers[vi] = answer.strip().lower()
+        st.session_state.verb_submitted[vi] = True
 
-    if st.session_state.verb_submitted[v_index]:
-        if user_input.strip().lower() == correct.lower():
+    if st.session_state.verb_submitted[vi]:
+        correct = verb[mode]
+        if st.session_state.verb_answers[vi] == correct:
             st.success("Correct!")
         else:
             st.error(f"Incorrect. The correct answer is: **{correct}**")
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3 = st.columns(3)
     with col1:
-        if st.button("Previous", disabled=(v_index == 0), key="verb_prev"):
+        if st.button("Previous", key="verb_prev", disabled=(vi == 0)):
             st.session_state.verb_index -= 1
-            st.rerun()
     with col2:
-        if st.button("Next", disabled=(v_index == len(verb_data) - 1), key="verb_next"):
+        if st.button("Next", key="verb_next", disabled=(vi == len(verb_data) - 1)):
             st.session_state.verb_index += 1
-            st.rerun()
     with col3:
         if st.button("Show Score", key="verb_score"):
             score = sum(
-                1 for i, v in enumerate(st.session_state.verb_quiz)
-                if st.session_state.verb_answers[i]
-                and st.session_state.verb_answers[i].strip().lower() == v[st.session_state.verb_mode[i]].lower()
+                1 for i in range(len(verb_data))
+                if st.session_state.verb_answers[i] == st.session_state.verb_quiz[i][st.session_state.verb_mode[i]]
             )
             st.success(f"Your score: {score} / {len(verb_data)}")
-    with col4:
-        if st.button("Reset Quiz", key="verb_reset"):
-            for k in ["verb_quiz", "verb_index", "verb_mode", "verb_answers", "verb_submitted"]:
-                st.session_state.pop(k, None)
-            st.experimental_rerun()
 
 # ------------------- TAB 3 -------------------
 with tab3:
-    st.header("Text-to-Speech Demo")
-    text = st.text_input("Enter text for TTS:", "Hello, Streamlit!")
+    st.header("Text-to-Speech (TTS)")
+    text = st.text_input("Enter text for TTS:", "Hello, Streamlit!", key="tts_input")
     if st.button("Generate TTS", key="tts_button"):
         tts = gTTS(text)
         tts_bytes = BytesIO()
