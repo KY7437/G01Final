@@ -46,6 +46,9 @@ with tab1:
     if st.session_state.show_text:
         st.write(predefined_text)
 
+    url="https://github.com/KY7437/G01Final/raw/main/data/story01.png"
+    st.image(url, caption="Lesson 1", width=300)  # width in pixel
+
 with tab2:
     st.write("W")
 
