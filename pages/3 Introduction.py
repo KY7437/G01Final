@@ -32,7 +32,7 @@ import os
 import tempfile
 
 # 🔑 OpenAI API Key 설정
-openai.api_key = st.secrets["OPENAI_API_KEY"] if "OPENAI_API_KEY" in st.secrets else "sk-여기에_키_붙여넣기"
+openai.api_key = st.secrets["OPENAI_API_KEY"] if "OPENAI_API_KEY" in st.secrets else "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기"
 
 # 🌐 GPT로 관련 개념 받아오기
 def get_related_words(word):
@@ -82,3 +82,7 @@ if st.button("Generate Knowledge Map") and keyword:
             show_map_in_streamlit(net)
         else:
             st.error("관련 단어를 불러오는 데 실패했습니다.")
+
+pip install openai streamlit pyvis networkx
+streamlit run knowledge_map.py
+
