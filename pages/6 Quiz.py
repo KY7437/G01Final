@@ -10,7 +10,7 @@ st.set_page_config(page_title="Review Check")
 st.title("Review Check")
 
 # 탭 4개 정의
-tab1, tab2, tab3, tab4 = st.tabs(["Grammar-Level 1", "Grammar-Level 2", "Grammar-Level 3", "Paragraph-TF"])
+tab1, tab2, tab3, tab4 = st.tabs(["Paragraph-TF", "Grammar-Level 1", "Grammar-Level 2", "Grammar-Level 3"])
 
 # ------------------- TAB 1 -------------------
 # 퀴즈 탭
