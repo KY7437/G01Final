@@ -105,11 +105,78 @@ with tab1:
 # ------------------- TAB 2 -------------------
 # Level 2 탭
 with tab2:
-    st.header("Level 2 Content")
-    st.write("This is where you can add Level 2 content.")
-    if st.button("Generate Random Number"):
-        number = random.randint(1, 100)
-        st.write(f"Random Number: {number}")
+    with tab2:
+    st.header("Verb Form Quiz (Level 2)")
+
+    # 퀴즈 데이터
+    verb_data = [
+        {"base": "go", "past": "went", "pp": "gone"},
+        {"base": "eat", "past": "ate", "pp": "eaten"},
+        {"base": "write", "past": "wrote", "pp": "written"},
+        {"base": "take", "past": "took", "pp": "taken"},
+        {"base": "see", "past": "saw", "pp": "seen"},
+        {"base": "come", "past": "came", "pp": "come"},
+        {"base": "break", "past": "broke", "pp": "broken"},
+        {"base": "choose", "past": "chose", "pp": "chosen"},
+        {"base": "fly", "past": "flew", "pp": "flown"},
+        {"base": "begin", "past": "began", "pp": "begun"}
+    ]
+
+    # 세션 상태 초기화
+    if "verb_quiz" not in st.session_state:
+        st.session_state.verb_quiz = random.sample(verb_data, len(verb_data))
+        st.session_state.verb_index = 0
+        st.session_state.verb_mode = random.choices(["past", "pp"], k=len(verb_data))  # 각 문항마다 past or pp 선택
+        st.session_state.verb_answers = [None] * len(verb_data)
+        st.session_state.verb_submitted = [False] * len(verb_data)
+
+    index = st.session_state.verb_index
+    current_verb = st.session_state.verb_quiz[index]
+    mode = st.session_state.verb_mode[index]  # "past" or "pp"
+
+    # 정답 및 오답 섞기
+    correct_answer = current_verb[mode]
+    wrong_answers = set(v[mode] for v in verb_data if v != current_verb)
+    choices = random.sample(list(wrong_answers), 3) + [correct_answer]
+    random.shuffle(choices)
+
+    # 표시 예: go (Past Participle)
+    mode_label = "Past" if mode == "past" else "Past Participle"
+    st.markdown(f"### {current_verb['base']} ({mode_label})")
+
+    selected = st.radio("Choose the correct form:", choices,
+                        index=0 if st.session_state.verb_answers[index] is None else choices.index(st.session_state.verb_answers[index]))
+
+    if st.button("Submit Answer"):
+        st.session_state.verb_answers[index] = selected
+        st.session_state.verb_submitted[index] = True
+
+    if st.session_state.verb_submitted[index]:
+        if selected == correct_answer:
+            st.success("Correct!")
+        else:
+            st.error(f"Incorrect. The correct answer is: **{correct_answer}**")
+
+    # 네비게이션 버튼
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        if st.button("Previous", disabled=(index == 0)):
+            st.session_state.verb_index -= 1
+            st.rerun()
+
+    with col2:
+        if st.button("Next", disabled=(index == len(verb_data) - 1)):
+            st.session_state.verb_index += 1
+            st.rerun()
+
+    with col3:
+        if st.button("Show Score"):
+            score = sum(
+                1 for i, v in enumerate(st.session_state.verb_quiz)
+                if st.session_state.verb_answers[i] == v[st.session_state.verb_mode[i]]
+            )
+            st.success(f"Your score: {score} / {len(verb_data)}")
 
 # ------------------- TAB 3 -------------------
 # TTS 기능 탭
