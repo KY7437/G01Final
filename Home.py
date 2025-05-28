@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("😚Lesson 1")
+st.title("The Midnight Library")
 st.caption("This is a group project of G1")
 
 st.write("This should be a collaboratory work")
