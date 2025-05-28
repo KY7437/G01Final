@@ -82,3 +82,5 @@ if st.button("Generate Knowledge Map") and keyword:
             show_map_in_streamlit(net)
         else:
             st.error("관련 단어를 불러오는 데 실패했습니다.")
+
+streamlit run knowledge_map.py
