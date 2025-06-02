@@ -78,8 +78,7 @@ st.title("Memorization of the Text")
             st.success(f"Correct Answers: {score} / {len(answer_words)}")
 
 with tab3:
-    st.title("Active to Passive sentence")
-import streamlit as st
+ import streamlit as st
 
 st.set_page_config(page_title="Passive Practice", page_icon="📝")
 st.title("📝 Active to Passive Practice")
@@ -111,9 +110,9 @@ base_to_pp = {
 
 subject_to_object = {
     "I": "me", "He": "him", "She": "her", "It": "it",
-    "We": "us", "They": "them",
-    "Tom": "Tom", "John": "John", "Mary": "Mary", "The teacher": "the teacher", "The chef": "the chef", "A student": "a student"
-
+    "We": "us", "They": "them", "You": "you",
+    "Tom": "Tom", "John": "John", "Mary": "Mary",
+    "The teacher": "the teacher", "The chef": "the chef", "A student": "a student"
 }
 
 if "index" not in st.session_state:
@@ -182,7 +181,7 @@ def convert_to_passive(sentence):
 if st.session_state.show_passive:
     result, explanation = convert_to_passive(current)
     if result:
-        st.markdown(f"<h3 style='font-size:28px;'>✅ Passive Sentnece: {result}</h3>", unsafe_allow_html=True)
+        st.markdown(f"<h3 style='font-size:28px;'>✅ Passive Sentence: {result}</h3>", unsafe_allow_html=True)
         st.markdown(f"### 🧠 Explanation:\n{explanation}")
     else:
         st.warning(explanation)
