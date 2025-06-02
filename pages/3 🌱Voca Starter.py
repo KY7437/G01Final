@@ -3,12 +3,6 @@ import pandas as pd
 from gtts import gTTS
 from io import BytesIO
 import random
-import tempfile
-import openai
-from pyvis.network import Network
-import networkx as nx
-
-# 🔑 Set OpenAI API Key
 
 # Define tabs
 tab1, tab2, tab3, tab4 = st.tabs(["❄️ Word List", "❄️ Knowledge Map", "❄️ Meaning Master", "❄️ Spelling Master"])
