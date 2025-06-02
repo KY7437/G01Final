@@ -7,11 +7,11 @@ tab1, tab2, tab3 = st.tabs(["🍃 Grammar Concept", "🍃 Role Play", "🍃 Draw
 
 # Content for the first tab
 with tab1:
-    st.header("Passives")
+    st.title("Passives")
     st.write("Be verb plus participle")
 
 with tab2:
-    st.header("Role Play")
+    st.title("Role Play")
     # Grammar expression and dialogue database
     EXPRESSION_DB = {
         "that": {
@@ -97,4 +97,4 @@ with tab2:
                     st.write("")
 
 with tab3:
-    st.write("Drawing Activity")
+    st.title("Drawing Activity")
