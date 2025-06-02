@@ -78,11 +78,13 @@ st.title("Memorization of the Text")
             st.success(f"Correct Answers: {score} / {len(answer_words)}")
 
 with tab3:
- import streamlit as st
+import streamlit as st
 
+# ✅ 반드시 맨 위에 있어야 함
 st.set_page_config(page_title="Passive Practice", page_icon="📝")
 st.title("📝 Active to Passive Practice")
 
+# 예문 리스트
 examples = [
     "Tom eats an apple.",
     "She wrote a letter.",
@@ -96,18 +98,21 @@ examples = [
     "The teacher sent a message."
 ]
 
+# 동사의 과거형 → 과거분사
 past_to_pp = {
     "ate": "eaten", "wrote": "written", "saw": "seen", "made": "made",
     "took": "taken", "did": "done", "bought": "bought", "found": "found",
     "sent": "sent", "read": "read", "said": "said", "went": "gone", "gave": "given", "make": "made"
 }
 
+# 동사의 기본형 → 과거분사
 base_to_pp = {
     "eat": "eaten", "write": "written", "see": "seen", "make": "made",
     "take": "taken", "do": "done", "buy": "bought", "find": "found",
     "send": "sent", "read": "read", "say": "said", "go": "gone", "give": "given"
 }
 
+# 주어를 목적격으로 바꾸는 사전
 subject_to_object = {
     "I": "me", "He": "him", "She": "her", "It": "it",
     "We": "us", "They": "them", "You": "you",
@@ -115,6 +120,7 @@ subject_to_object = {
     "The teacher": "the teacher", "The chef": "the chef", "A student": "a student"
 }
 
+# 상태 저장
 if "index" not in st.session_state:
     st.session_state.index = 0
 if "current_sentence" not in st.session_state:
@@ -122,6 +128,7 @@ if "current_sentence" not in st.session_state:
 if "show_passive" not in st.session_state:
     st.session_state.show_passive = False
 
+# 버튼 UI
 col1, col2 = st.columns(2)
 with col1:
     if st.button("🔄 Show Passive"):
@@ -132,10 +139,11 @@ with col2:
         st.session_state.current_sentence = examples[st.session_state.index]
         st.session_state.show_passive = False
 
+# 현재 문장
 current = st.session_state.current_sentence
-
 st.markdown(f"<h3 style='font-size:28px;'>✏️ Active Sentence: {current}</h3>", unsafe_allow_html=True)
 
+# 수동태로 변환하는 함수
 def convert_to_passive(sentence):
     sentence = sentence.strip().rstrip(".")
     words = sentence.split()
@@ -178,6 +186,7 @@ def convert_to_passive(sentence):
     )
     return passive, explanation
 
+# 수동태 표시
 if st.session_state.show_passive:
     result, explanation = convert_to_passive(current)
     if result:
