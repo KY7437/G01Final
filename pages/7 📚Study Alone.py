@@ -4,7 +4,9 @@ from gtts import gTTS
 from io import BytesIO
 import re
 
-st.set_page_config(page_title="📚 Study Alone", layout="wide")
+st.set_page_config(page_title="📚Study Alone", layout="wide")
+
+st.title("📚Study Alone")
 
 # Define tabs
 tab1, tab2, tab3 = st.tabs(["Guidelines", "Memorization of the text", "a"])
