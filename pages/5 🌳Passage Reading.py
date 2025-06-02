@@ -6,7 +6,7 @@ import re
 st.title("Passage Reading")
 
 # Define tabs
-tab1, tab2, tab3 = st.tabs(["🍃 TTS", "🍃 Sentence Reader", "🍃 Placeholder"])
+tab1, tab2, tab3 = st.tabs(["🍃 TTS", "🍃 Sentence Reader"])
 
 with tab1:
     url = "https://github.com/KY7437/G01Final/raw/main/data/story01.png"
@@ -102,5 +102,3 @@ with tab2:
         if st.button("Next ▶") and st.session_state.index < len(sentences) - 1:
             st.session_state.index += 1
 
-with tab3:
-    st.write("Placeholder for additional content")
