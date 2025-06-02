@@ -5,7 +5,7 @@ from streamlit_drawable_canvas import st_canvas
 import numpy as np
 
 # Define tabs
-tab1, tab2, tab3, tab4 = st.tabs(["🍃 Guidelines", "🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
+tab1, tab2, tab3, tab4 = st.tabs(["🔍 Guidelines", "🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
 
 with tab1:
     st.title("Guidelines")
