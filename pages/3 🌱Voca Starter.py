@@ -82,6 +82,7 @@ else:
         st.session_state.show_result = False
         st.session_state.user_input = ""
         st.rerun()
+
 with tab3:
     st.title("Spelling Master", "spelling")
 import streamlit as st
