@@ -16,7 +16,10 @@ with tab1:
     st.write("This section will provide guidelines on how to use the application effectively.")
 
 with tab2:
-    st.title("Memorization of the Text")
+    import streamlit as st
+
+st.set_page_config(page_title="Passive Practice", page_icon="📝") 
+st.title("Memorization of the Text")
 
     # Text passage
     text = """In the small town of Willowby, there stood an old library that was rumored to be enchanted. Every night at midnight, the books inside would whisper stories to each other, bringing their characters to life. One evening, Sarah, a curious 15-year-old book lover, decided to sneak into the library to see if the rumors were true.
