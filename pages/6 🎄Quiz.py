@@ -116,19 +116,19 @@ with tab2:
 
 # ------------------- TAB 3 -------------------
 with tab3:
-    st.header("Idenfying Sentence Quiz (Level 2)")
+    st.header("Identifying Sentence Quiz (Level 2)")
 
     passive_questions = [
-        {"sentence": "The cake was baked by my mom.", "correct": True},
-        {"sentence": "A new library is being build near the park.", "correct": False},  # 오류 intentional
-        {"sentence": "This photo was taken in Paris.", "correct": True},
-        {"sentence": "The homework have been completed by all the students.", "correct": False},  # 오류 intentional
-        {"sentence": "English is spoken in many countries.", "correct": True},
-        {"sentence": "The car was repair yesterday.", "correct": False},  # 오류 intentional
-        {"sentence": "These apples will be picked tomorrow.", "correct": True},
-        {"sentence": "The movie is directing by a famous filmmaker.", "correct": False},  # 오류 intentional
-        {"sentence": "The package had been delivered before noon.", "correct": True},
-        {"sentence": "The rules must followed at all times.", "correct": False}  # 오류 intentional
+        {"sentence": "The cake was baked by my mom.", "correct": True, "explanation": "This is a correct passive sentence. It follows the structure: was + past participle."},
+        {"sentence": "A new library is being build near the park.", "correct": False, "explanation": "Incorrect. 'build' should be 'built' (past participle)."},
+        {"sentence": "This photo was taken in Paris.", "correct": True, "explanation": "Correct use of the passive voice: was + taken (past participle)."},
+        {"sentence": "The homework have been completed by all the students.", "correct": False, "explanation": "Incorrect. 'have' should be 'has' because 'homework' is uncountable."},
+        {"sentence": "English is spoken in many countries.", "correct": True, "explanation": "This is a correct and common use of the passive voice."},
+        {"sentence": "The car was repair yesterday.", "correct": False, "explanation": "Incorrect. 'repair' should be 'repaired' (past participle)."},
+        {"sentence": "These apples will be picked tomorrow.", "correct": True, "explanation": "Correct future passive: will be + past participle."},
+        {"sentence": "The movie is directing by a famous filmmaker.", "correct": False, "explanation": "Incorrect. 'directing' should be 'directed' (past participle)."},
+        {"sentence": "The package had been delivered before noon.", "correct": True, "explanation": "Correct past perfect passive: had been + past participle."},
+        {"sentence": "The rules must followed at all times.", "correct": False, "explanation": "Incorrect. Should be 'must be followed' for passive voice."}
     ]
 
     if "pv_index" not in st.session_state:
@@ -140,17 +140,18 @@ with tab3:
     current_q = st.session_state.pv_shuffled[i]
 
     st.subheader(f"Question {i + 1} of {len(passive_questions)}")
-    st.write(f"**{current_q['sentence']}**")
+    st.markdown(f"### *{current_q['sentence']}*")  # Bigger, italicized
+
     answer = st.radio("Is this sentence grammatically correct?", ["Correct", "Incorrect"], key=f"pv_radio_{i}")
 
     if st.button("Submit Answer", key=f"pv_submit_{i}"):
         user_answer = (answer == "Correct")
         st.session_state.pv_answers[i] = user_answer
         if user_answer == current_q["correct"]:
-            st.success("Correct!")
+            st.success("✅ Correct!")
         else:
-            st.error("Incorrect.")
-            st.info(f"Explanation: This sentence is {'correct' if current_q['correct'] else 'incorrect'}.")
+            st.error("❌ Incorrect.")
+        st.info(f"**Explanation:** {current_q['explanation']}")
 
     c1, c2, c3 = st.columns(3)
     with c1:
@@ -167,7 +168,7 @@ with tab3:
                 1 for j, q in enumerate(st.session_state.pv_shuffled)
                 if st.session_state.pv_answers[j] == q["correct"]
             )
-            st.success(f"Your score: {score} / {len(passive_questions)}")
+            st.success(f"🏆 Your score: {score} / {len(passive_questions)}")
     
 # ------------------- TAB 4 -------------------
 with tab4:
