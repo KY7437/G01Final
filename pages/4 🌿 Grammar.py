@@ -3,13 +3,12 @@ from gtts import gTTS
 import tempfile
 
 # Define tabs
-tab1, tab2, tab3 = st.tabs(["🍃Guildlines", "🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
+tab1, tab2, tab3, tab4 = st.tabs(["🍃 Guidelines", "🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
 
 with tab1:
-    st.title("Guildlines")
-    st.write("""In this section, ...""")
+    st.title("Guidelines")
+    st.write("In this section, ...")
 
-# Content for the first tab
 with tab2:
     st.title("Passives")
     st.write("Be verb plus participle")
