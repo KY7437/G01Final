@@ -9,5 +9,5 @@ st.markdown("---")
 
 st.write("Access through the QR code.")
 
-url="https://github.com/KY7437/G01Final/raw/main/data/dycm73.png"
+url="https://github.com/KY7437/G01Final/raw/main/data/QR.png"
 st.image(url, caption="Lesson 1", width=300)  # width in pixel
