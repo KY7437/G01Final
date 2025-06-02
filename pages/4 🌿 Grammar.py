@@ -1,6 +1,8 @@
 import streamlit as st
 from gtts import gTTS
 import tempfile
+from streamlit_drawable_canvas import st_canvas
+import numpy as np
 
 # Define tabs
 tab1, tab2, tab3, tab4 = st.tabs(["🍃 Guidelines", "🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
@@ -31,22 +33,17 @@ with tab2:
         When we use an <strong>active verb</strong>, we say <strong>what the subject does</strong>: <br>
         - My grandfather was a builder. He built this house in 1981.<br>
         - It’s a big company. It employs two hundred people.<br><br>
-
         When we use a <strong>passive verb</strong>, we say <strong>what happens to the subject</strong>:<br>
         - ‘How old is this house?’ ‘It was built in 1981.’<br>
         - Two hundred people are employed by the company.<br><br>
-
         When we use the passive, who or what causes the action is often unknown or unimportant:<br>
         - A lot of money was stolen in the robbery. (somebody stole it, but we don’t know who)<br>
         - Is this room cleaned every day? (does somebody clean it? – it’s not important who)<br><br>
-
         If we want to say who does or what causes the action, we use <strong>by</strong>:<br>
         - This house was built <strong>by my grandfather</strong>.<br>
         - Two hundred people are employed <strong>by the company</strong>.<br><br>
-
         The passive is be (is/was etc.) + past participle (done/cleaned/seen etc.):<br>
         (be) done (be) cleaned (be) damaged (be) built (be) seen etc.<br><br>
-
         The past participle often ends in -ed (cleaned/damaged etc.), but many important verbs are irregular (built/done/stolen etc.). To practice irregular forms more, go to Voca Starter and use the app deployed on tab 3.
         </div>
     """, unsafe_allow_html=True)
@@ -139,3 +136,28 @@ with tab3:
 
 with tab4:
     st.title("Drawing Activity")
+
+    def main():
+        st.title("Streamlit 그림판 (굵기 & 색깔 변경 가능)")
+
+        # 사용자 입력 위젯
+        stroke_width = st.slider("선 굵기", min_value=1, max_value=25, value=5)
+        stroke_color = st.color_picker("선 색깔", "#000000")
+
+        canvas_result = st_canvas(
+            fill_color="rgba(255, 165, 0, 0.3)",  # 투명 오렌지색 배경
+            stroke_width=stroke_width,
+            stroke_color=stroke_color,
+            background_color="#eeeeee",
+            height=400,
+            width=600,
+            drawing_mode="freedraw",
+            key="canvas",
+        )
+
+        if canvas_result.image_data is not None:
+            img = canvas_result.image_data.astype(np.uint8)
+            st.image(img)
+
+    if __name__ == "__main__":
+        main()
