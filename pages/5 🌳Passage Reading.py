@@ -5,7 +5,7 @@ from io import BytesIO
 st.title("Passage Reading")
 
 # Define tabs
-tab1, tab2, tab3 = st.tabs(["❄️ TTS", "❄️ 2. gg", "❄️ 3. gg"])
+tab1, tab2, tab3 = st.tabs(["🍃 TTS", "🍃 2. gg", "🍃 3. gg"])
 
 with tab1:
     url = "https://github.com/KY7437/G01Final/raw/main/data/story01.png"
