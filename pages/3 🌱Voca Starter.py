@@ -26,6 +26,7 @@ with tab1:
         st.error(f"Error loading word list: {e}")
 
 with tab2:
+    st.write("content 2")
 
 with tab3:
     vocabulary_quiz("Meaning Master", "meaning")
