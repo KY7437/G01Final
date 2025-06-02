@@ -3,7 +3,7 @@ from gtts import gTTS
 from io import BytesIO
 import re
 
-st.title("Passage Reading")
+st.title("📚Study Alone")
 
 # Define tabs
 tab1, tab2, tab3 = st.tabs(["Guildlines", "Memorization of the text", "a"])
