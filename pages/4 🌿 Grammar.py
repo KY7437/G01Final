@@ -3,15 +3,19 @@ from gtts import gTTS
 import tempfile
 
 # Define tabs
-tab1, tab2, tab3 = st.tabs(["🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
+tab1, tab2, tab3 = st.tabs(["🍃Guildlines", "🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
+
+with tab1:
+    st.title("Guildlines")
+    st.write("""In this section, ...""")
 
 # Content for the first tab
-with tab1:
+with tab2:
     st.title("Passives")
     st.write("Be verb plus participle")
     st.write("video description & text")
 
-with tab2:
+with tab3:
     st.title("Role Play")
     # Grammar expression and dialogue database
     EXPRESSION_DB = {
@@ -97,5 +101,5 @@ with tab2:
                 else:
                     st.write("")
 
-with tab3:
+with tab4:
     st.title("Drawing Activity")
