@@ -172,69 +172,69 @@ with tab3:
     
 # ------------------- TAB 4 -------------------
 with tab4:
-    st.header("Choose the Correct Verb Form (Level 3)")
+    st.header("Fill in the Blank Quiz (Level 3)")
 
     fill_questions = [
         {
-            "sentence": "1. The book (    ) that the king was happy.",
+            "sentence": "1. The book ( ___ ) that the king was happy.",
             "options": ["Say", "Said", "is said", "Saying"],
-            "answer": "Said",
-            "explanation": "'Said' is the past tense of 'say' and fits grammatically. This is an active sentence meaning the book stated something in the past."
+            "answer": "is said",
+            "explanation": "The phrase 'The book is said that...' is a common passive structure used to express reported speech."
         },
         {
-            "sentence": "2. A decision (   ) since Holiday.",
+            "sentence": "2. A decision ( ___ ) since Holiday.",
             "options": ["made", "makes", "was made", "has been made"],
             "answer": "has been made",
-            "explanation": "The phrase 'since Holiday' suggests the present perfect tense. 'A decision' is the subject, and since it receives the action, the passive form 'has been made' is correct."
+            "explanation": "'Has been made' is present perfect passive, appropriate since the time is 'since Holiday'."
         },
         {
-            "sentence": "3. My hamburger will (   ) tomorrow.",
+            "sentence": "3. My hamburger will ( ___ ) tomorrow.",
             "options": ["deliver", "delivered", "be delivered", "be delivering"],
             "answer": "be delivered",
-            "explanation": "This is a passive future sentence. The correct structure is 'will + be + past participle'."
+            "explanation": "Future passive voice: 'will be delivered'."
         },
         {
-            "sentence": "4. He (   ) the cabin with own hands.",
+            "sentence": "4. He ( ___ ) the cabin with own hands.",
             "options": ["built", "build", "is built", "building"],
             "answer": "built",
-            "explanation": "This is a simple past active sentence. 'He' did the action in the past, so 'built' is appropriate."
+            "explanation": "This is active voice, simple past. The subject 'he' performed the action."
         },
         {
-            "sentence": "5. The hat (   ) is on the chair now.",
+            "sentence": "5. The hat ( ___ ) is on the chair now.",
             "options": ["washes", "washed", "washing", "is washed"],
             "answer": "washed",
-            "explanation": "'Washed' is a past participle used as an adjective to describe 'the hat'. The sentence means the washed hat is now on the chair."
+            "explanation": "'The hat washed' acts as a reduced relative clause. It means 'The hat that was washed...'."
         },
         {
-            "sentence": "6. Teams (   ) the project early.",
+            "sentence": "6. Teams ( ___ ) the project early.",
             "options": ["completed", "are completed", "to complete", "will be completed"],
             "answer": "completed",
-            "explanation": "This is a simple past active sentence. The teams did the action, so 'completed' is correct."
+            "explanation": "Active voice: 'Teams completed the project' is grammatically correct and natural."
         },
         {
-            "sentence": "7. The invitation (   ) last week.",
+            "sentence": "7. The invitation ( ___ ) last week.",
             "options": ["sent", "is sent", "was sent", "to sending"],
             "answer": "was sent",
-            "explanation": "'Last week' indicates past time, and the subject 'The invitation' received the action. Use the simple past passive form: 'was sent'."
+            "explanation": "'Was sent' is past simple passive. 'Last week' suggests a completed past action."
         },
         {
-            "sentence": "8. Those shoes (   ) in Italy.",
+            "sentence": "8. Those shoes ( ___ ) in Italy.",
             "options": ["made", "were made", "are making", "have made"],
             "answer": "were made",
-            "explanation": "'Those shoes' is the subject and receives the action. 'In Italy' is extra detail. The correct passive past form is 'were made'."
+            "explanation": "Passive voice past tense: 'were made'. The sentence tells about origin."
         },
         {
-            "sentence": "9. My father thought that the cookies (   ) this morning.",
+            "sentence": "9. My father thought that the cookies ( ___ ) this morning.",
             "options": ["baked", "is baking", "were made", "to make"],
             "answer": "were made",
-            "explanation": "'The cookies' is the subject of the noun clause, and they received the action. Past passive form 'were made' is correct."
+            "explanation": "'The cookies were made' is passive in the past, matching with 'this morning'."
         },
         {
-            "sentence": "10. She (  ) the car right now.",
+            "sentence": "10. She ( ___ ) the car right now.",
             "options": ["washed", "is washing", "will be washing", "should be washed"],
             "answer": "is washing",
-            "explanation": "'Right now' signals present continuous tense. 'She is washing' is the correct active form for an action happening at the moment."
-        }
+            "explanation": "'Is washing' is present continuous active voice, and matches 'right now'."
+        },
     ]
 
     if "fill_index" not in st.session_state:
@@ -246,7 +246,7 @@ with tab4:
     current_q = st.session_state.fill_shuffled[i]
 
     st.subheader(f"Question {i + 1} of {len(fill_questions)}")
-    st.write(f"**{current_q['sentence']}**")
+    st.markdown(f"### {current_q['sentence']}")
 
     answer = st.radio("Choose the correct answer:", current_q["options"], key=f"fill_radio_{i}")
 
@@ -255,8 +255,8 @@ with tab4:
         if answer == current_q["answer"]:
             st.success("Correct!")
         else:
-            st.error(f"Incorrect. The correct answer is **{current_q['answer']}**.")
-        st.info(f"Explanation: {current_q['explanation']}")
+            st.error(f"Incorrect. Correct answer: **{current_q['answer']}**")
+        st.info(f"**Explanation:** {current_q['explanation']}")
 
     c1, c2, c3 = st.columns(3)
     with c1:
