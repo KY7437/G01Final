@@ -3,7 +3,7 @@ import random
 
 st.set_page_config(page_title="빈칸 영어 본문 학습", layout="wide")
 
-# ✅ 본문
+# 본문 텍스트
 text = """In the small town of *Willowby*, there stood an old library that was rumored to be enchanted. Every night at midnight, the books inside would whisper stories to each other, bringing their characters to life. One evening, **Sarah**, a curious 15-year-old book lover, decided to sneak into the library to see if the rumors were true.
 
 As the clock struck twelve, the books began to rustle. To Sarah's amazement, characters stepped out of their pages. She met **Alice** from Wonderland, **the White Rabbit**, and even **pirates** from Treasure Island. They invited her to join their midnight council, where they discussed the tales of their adventures and the wisdom they contained.
@@ -30,24 +30,32 @@ num_blanks = int(len(words) * blank_ratio)
 # ✅ 무작위로 빈칸 만들 단어 선택
 blank_indices = sorted(random.sample(word_indices, num_blanks))
 
-# ✅ 빈칸 처리
+# ✅ 빈칸 처리 + 단서 버튼 추가
+processed_words = []
 for i, word in enumerate(words):
     if i in blank_indices:
-        if st.button("⬜", key=i):
-            st.write(word)
+        clean_word = word.strip(".,!?;:")  # 특수문자 제거
+        suffix = word[len(clean_word):]  # 문장 부호 등 유지
+        hint = clean_word[0] if clean_word else ""
+
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.markdown(f"**_____**{suffix}", unsafe_allow_html=True)
+        with col2:
+            if st.button("힌트", key=f"hint_{i}"):
+                st.markdown(f"`{hint}`")
     else:
         st.write(word, end=" ")
 
-# ✅ 한 줄로 출력되도록 스타일 적용
+# ✅ CSS 스타일 적용 (선택적)
 st.markdown(
     """
     <style>
     div[data-testid="column"] {
         display: inline-block;
-        margin: 5px;
+        margin: 4px 6px;
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
-
