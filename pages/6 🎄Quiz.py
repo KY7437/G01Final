@@ -61,6 +61,7 @@ with tab1:
 # ------------------- TAB 2 -------------------
 with tab2:
     st.header("Verb Form Quiz (Level 1)")
+    st.markdown("Enter the preterite form of the verb above.")
 
     verb_data = [
         {"base": "go", "past": "went", "pp": "gone"},
@@ -117,6 +118,7 @@ with tab2:
 # ------------------- TAB 3 -------------------
 with tab3:
     st.header("Identifying Sentence Quiz (Level 2)")
+    st.markdown("Check the grammaticality of the sentence.")
 
     passive_questions = [
         {"sentence": "The cake was baked by my mom.", "correct": True, "explanation": "This is a correct passive sentence. It follows the structure: was + past participle."},
@@ -173,6 +175,7 @@ with tab3:
 # ------------------- TAB 4 -------------------
 with tab4:
     st.header("Fill in the Blank Quiz (Level 3)")
+    st.markdown("Choose the right verb from among four options")
 
     fill_questions = [
         {
