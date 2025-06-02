@@ -78,21 +78,6 @@ with tab2:
     """
     sentences = split_text_into_sentences(passage)
 
-    if 'index' not in st.session_state:
-        st.session_state.index = 0
-
-    # Font size scaler
-    font_size = st.slider("Select Font Size", min_value=12, max_value=40, value=20, step=2)
-
-    # Dynamic CSS for font size
-    st.markdown(f"""
-        <style>
-        .sentence-text {{
-            font-size: {font_size}px !important;
-        }}
-        </style>
-    """, unsafe_allow_html=True)
-
     def get_tts():
         sentence = sentences[st.session_state.index]
         tts = gTTS(text=sentence, lang='en')
