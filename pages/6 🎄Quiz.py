@@ -116,17 +116,59 @@ with tab2:
 
 # ------------------- TAB 3 -------------------
 with tab3:
-    st.header("Level 3 Content")
-    st.write("Text-to-Speech Demo")
+    st.header("Idenfying Sentence Quiz (Level 2)")
 
-    text = st.text_input("Enter text for TTS:", "Hello, Streamlit!")
-    if st.button("Generate TTS", key="tts_btn"):
-        tts = gTTS(text)
-        tts_bytes = BytesIO()
-        tts.write_to_fp(tts_bytes)
-        tts_bytes.seek(0)
-        st.audio(tts_bytes, format="audio/mp3")
+    passive_questions = [
+        {"sentence": "The cake was baked by my mom.", "correct": True},
+        {"sentence": "A new library is being build near the park.", "correct": False},  # 오류 intentional
+        {"sentence": "This photo was taken in Paris.", "correct": True},
+        {"sentence": "The homework have been completed by all the students.", "correct": False},  # 오류 intentional
+        {"sentence": "English is spoken in many countries.", "correct": True},
+        {"sentence": "The car was repair yesterday.", "correct": False},  # 오류 intentional
+        {"sentence": "These apples will be picked tomorrow.", "correct": True},
+        {"sentence": "The movie is directing by a famous filmmaker.", "correct": False},  # 오류 intentional
+        {"sentence": "The package had been delivered before noon.", "correct": True},
+        {"sentence": "The rules must followed at all times.", "correct": False}  # 오류 intentional
+    ]
 
+    if "pv_index" not in st.session_state:
+        st.session_state.pv_index = 0
+        st.session_state.pv_shuffled = random.sample(passive_questions, len(passive_questions))
+        st.session_state.pv_answers = [None] * len(passive_questions)
+
+    i = st.session_state.pv_index
+    current_q = st.session_state.pv_shuffled[i]
+
+    st.subheader(f"Question {i + 1} of {len(passive_questions)}")
+    st.write(f"**{current_q['sentence']}**")
+    answer = st.radio("Is this sentence grammatically correct?", ["Correct", "Incorrect"], key=f"pv_radio_{i}")
+
+    if st.button("Submit Answer", key=f"pv_submit_{i}"):
+        user_answer = (answer == "Correct")
+        st.session_state.pv_answers[i] = user_answer
+        if user_answer == current_q["correct"]:
+            st.success("Correct!")
+        else:
+            st.error("Incorrect.")
+            st.info(f"Explanation: This sentence is {'correct' if current_q['correct'] else 'incorrect'}.")
+
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        if st.button("Previous", disabled=(i == 0), key="pv_prev"):
+            st.session_state.pv_index -= 1
+            st.rerun()
+    with c2:
+        if st.button("Next", disabled=(i == len(passive_questions) - 1), key="pv_next"):
+            st.session_state.pv_index += 1
+            st.rerun()
+    with c3:
+        if st.button("Show Score", key="pv_score"):
+            score = sum(
+                1 for j, q in enumerate(st.session_state.pv_shuffled)
+                if st.session_state.pv_answers[j] == q["correct"]
+            )
+            st.success(f"Your score: {score} / {len(passive_questions)}")
+    
 # ------------------- TAB 4 -------------------
 with tab4:
     st.header("Paragraph TF - Coming Soon")
