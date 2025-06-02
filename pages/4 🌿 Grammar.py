@@ -10,6 +10,7 @@ with tab1:
 
 with tab2:
     st.title("Passives")
+    st.markdown("Raymond Murphy, (2019). English Grammar in Use, Cambridge, p. 84")
     
     # Font size scaler
     font_size = st.slider("Select Font Size", min_value=12, max_value=40, value=20, step=2)
