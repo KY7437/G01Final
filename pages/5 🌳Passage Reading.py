@@ -78,6 +78,10 @@ with tab2:
     """
     sentences = split_text_into_sentences(passage)
 
+    # Initialize session state for sentence index
+    if 'index' not in st.session_state:
+        st.session_state.index = 0
+
     def get_tts():
         sentence = sentences[st.session_state.index]
         tts = gTTS(text=sentence, lang='en')
