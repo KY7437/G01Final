@@ -5,7 +5,7 @@ from io import BytesIO
 
 st.set_page_config(page_title="Review Check", layout="centered")
 
-tab1, tab2, tab3, tab4 = st.tabs(["Paragraph-TF", "Grammar-Level 1", "Grammar-Level 2", "Grammar-Level 3"])
+tab1, tab2, tab3, tab4 = st.tabs(["🍃Paragraph-TF", "🍃Grammar-Level 1", "🍃Grammar-Level 2", "🍃Grammar-Level 3"])
 
 # ------------------- TAB 1 -------------------
 with tab1:
