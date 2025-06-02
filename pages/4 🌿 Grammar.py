@@ -11,8 +11,9 @@ with tab1:
     When we use an active verb, we say what the subject does: 
    -  My grandfather was a builder. He built this house in 1981.
    -  It’s a big company. It employs two hundred people.
+   
     When we use a passive verb, we say what happens to the subject:
-    - ‘How old is this house?’ ‘It was built in 1981.’
+   - ‘How old is this house?’ ‘It was built in 1981.’
    -  Two hundred people are employed by the company.
 """)
 
