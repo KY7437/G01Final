@@ -11,3 +11,5 @@ st.write("Access through the QR code.")
 
 url="https://github.com/KY7437/G01Final/raw/main/data/QR.png"
 st.image(url, caption="Lesson 1", width=300)  # width in pixel
+
+st.write("Make sure to make a bookmark on the page so that you can still get access after this lesson.")
