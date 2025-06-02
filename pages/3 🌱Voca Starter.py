@@ -39,14 +39,14 @@ with tab1:
         st.error(f"Error loading word list: {e}")
 
 def display_quiz(quiz_type):
-    if quiz_type == "Meaning":
+    if quiz_type.lower() == "meaning":
         st.title("📖 Vocabulary Meaning Quiz")
         quiz_items = st.session_state.meaning_quiz_items
         current_q = st.session_state.current_q_meaning
         score = st.session_state.score_meaning
         key_suffix = "meaning"
     else:
-        st.title("📚 Spelling")
+        st.title("📚 Spelling Master")
         quiz_items = st.session_state.spelling_quiz_items
         current_q = st.session_state.current_q_spelling
         score = st.session_state.score_spelling
@@ -56,10 +56,10 @@ def display_quiz(quiz_type):
         word, meaning = quiz_items[current_q]
 
         st.subheader(f"Question {current_q + 1} of {len(quiz_items)}")
-        st.write(f"**Word:** {word}" if quiz_type == "meaning" else f"**Meaning:** {meaning}")
+        st.write(f"**Word:** {word}" if quiz_type.lower() == "meaning" else f"**Meaning:** {meaning}")
 
         user_input = st.text_input(
-            "Enter the Korean meaning:" if quiz_type == "meaning" else "Enter the English word:",
+            "Enter the Korean meaning:" if quiz_type.lower() == "meaning" else "Enter the English word:",
             key=f"input_{current_q}_{key_suffix}"
         )
 
@@ -68,11 +68,12 @@ def display_quiz(quiz_type):
             st.session_state[f"show_result_{key_suffix}"] = True
 
         if st.session_state[f"show_result_{key_suffix}"]:
-            if st.session_state[f"user_input_{key_suffix}"] == (meaning if quiz_type == "meaning" else word).strip().lower():
+            correct_answer = meaning if quiz_type.lower() == "meaning" else word
+            if st.session_state[f"user_input_{key_suffix}"] == correct_answer.strip().lower():
                 st.success("✅ Correct!")
-                score += 1
+                st.session_state[f"score_{key_suffix}"] += 1
             else:
-                st.error(f"❌ Incorrect! The correct answer was **{meaning if quiz_type == 'meaning' else word}**.")
+                st.error(f"❌ Incorrect! The correct answer was **{correct_answer}**.")
 
             if st.button("Next", key=f"next_{key_suffix}"):
                 st.session_state[f"current_q_{key_suffix}"] += 1
@@ -80,10 +81,10 @@ def display_quiz(quiz_type):
                 st.rerun()
     else:
         st.subheader("🎉 Quiz Finished!")
-        st.write(f"Your total score is: **{score} / {len(quiz_items)}**")
+        st.write(f"Your total score is: **{st.session_state[f'score_{key_suffix}']} / {len(quiz_items)}**")
 
         if st.button("Play Again", key=f"play_again_{key_suffix}"):
-            st.session_state[f"{quiz_type}_quiz_items"] = random.sample(list(vocab.items()), 5)
+            st.session_state[f"{quiz_type.lower()}_quiz_items"] = random.sample(list(vocab.items()), 5)
             st.session_state[f"current_q_{key_suffix}"] = 0
             st.session_state[f"score_{key_suffix}"] = 0
             st.session_state[f"show_result_{key_suffix}"] = False
