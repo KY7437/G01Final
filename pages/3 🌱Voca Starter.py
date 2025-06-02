@@ -23,7 +23,7 @@ with tab2:
     st.write("content 2")
 
 with tab3:
-    vocabulary_quiz("Meaning Master", "meaning")
+    st.title("Meaning Master", "meaning")
 
 with tab4:
-    vocabulary_quiz("Spelling Master", "spelling")
+    st.title("Spelling Master", "spelling")
