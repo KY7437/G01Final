@@ -6,7 +6,7 @@ import re
 st.title("Passage Reading")
 
 # Define tabs
-tab1, tab2, tab3 = st.tabs(["🍃 TTS", "🍃 Sentence Reader"])
+tab1, tab2 = st.tabs(["🍃 TTS", "🍃 Sentence Reader"])
 
 with tab1:
     url = "https://github.com/KY7437/G01Final/raw/main/data/story01.png"
