@@ -60,7 +60,7 @@ with tab1:
 
 # ------------------- TAB 2 -------------------
 with tab2:
-    st.header("Verb Form Quiz (Level 2)")
+    st.header("Verb Form Quiz (Level 1)")
 
     verb_data = [
         {"base": "go", "past": "went", "pp": "gone"},
