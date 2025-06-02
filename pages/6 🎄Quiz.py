@@ -176,61 +176,61 @@ with tab4:
 
     fill_questions = [
         {
-            "sentence": "1. The book ( ___ ) that the king was happy.",
+            "sentence": "The book ( ___ ) that the king was happy.",
             "options": ["Say", "Said", "is said", "Saying"],
             "answer": "is said",
             "explanation": "The phrase 'The book is said that...' is a common passive structure used to express reported speech."
         },
         {
-            "sentence": "2. A decision ( ___ ) since Holiday.",
+            "sentence": "A decision ( ___ ) since Holiday.",
             "options": ["made", "makes", "was made", "has been made"],
             "answer": "has been made",
             "explanation": "'Has been made' is present perfect passive, appropriate since the time is 'since Holiday'."
         },
         {
-            "sentence": "3. My hamburger will ( ___ ) tomorrow.",
+            "sentence": "My hamburger will ( ___ ) tomorrow.",
             "options": ["deliver", "delivered", "be delivered", "be delivering"],
             "answer": "be delivered",
             "explanation": "Future passive voice: 'will be delivered'."
         },
         {
-            "sentence": "4. He ( ___ ) the cabin with own hands.",
+            "sentence": "He ( ___ ) the cabin with own hands.",
             "options": ["built", "build", "is built", "building"],
             "answer": "built",
             "explanation": "This is active voice, simple past. The subject 'he' performed the action."
         },
         {
-            "sentence": "5. The hat ( ___ ) is on the chair now.",
+            "sentence": "The hat ( ___ ) is on the chair now.",
             "options": ["washes", "washed", "washing", "is washed"],
             "answer": "washed",
             "explanation": "'The hat washed' acts as a reduced relative clause. It means 'The hat that was washed...'."
         },
         {
-            "sentence": "6. Teams ( ___ ) the project early.",
+            "sentence": "Teams ( ___ ) the project early.",
             "options": ["completed", "are completed", "to complete", "will be completed"],
             "answer": "completed",
             "explanation": "Active voice: 'Teams completed the project' is grammatically correct and natural."
         },
         {
-            "sentence": "7. The invitation ( ___ ) last week.",
+            "sentence": "The invitation ( ___ ) last week.",
             "options": ["sent", "is sent", "was sent", "to sending"],
             "answer": "was sent",
             "explanation": "'Was sent' is past simple passive. 'Last week' suggests a completed past action."
         },
         {
-            "sentence": "8. Those shoes ( ___ ) in Italy.",
+            "sentence": "Those shoes ( ___ ) in Italy.",
             "options": ["made", "were made", "are making", "have made"],
             "answer": "were made",
             "explanation": "Passive voice past tense: 'were made'. The sentence tells about origin."
         },
         {
-            "sentence": "9. My father thought that the cookies ( ___ ) this morning.",
+            "sentence": "My father thought that the cookies ( ___ ) this morning.",
             "options": ["baked", "is baking", "were made", "to make"],
             "answer": "were made",
             "explanation": "'The cookies were made' is passive in the past, matching with 'this morning'."
         },
         {
-            "sentence": "10. She ( ___ ) the car right now.",
+            "sentence": "She ( ___ ) the car right now.",
             "options": ["washed", "is washing", "will be washing", "should be washed"],
             "answer": "is washing",
             "explanation": "'Is washing' is present continuous active voice, and matches 'right now'."
