@@ -3,10 +3,8 @@ import random
 from gtts import gTTS
 from io import BytesIO
 
-# 페이지 설정
 st.set_page_config(page_title="Review Check", layout="centered")
 
-# 탭 설정
 tab1, tab2, tab3, tab4 = st.tabs(["Paragraph-TF", "Grammar-Level 1", "Grammar-Level 2", "Grammar-Level 3"])
 
 # ------------------- TAB 1 -------------------
@@ -33,10 +31,8 @@ with tab1:
     st.subheader(f"Question {idx + 1} of {len(tf_questions)}")
     st.write(question["question"])
 
-    answer = st.radio("Select your answer:", ["True", "False"], key=f"tf_q_{idx}")
-    submitted = st.button("Submit Answer", key=f"tf_submit_{idx}")
-
-    if submitted:
+    answer = st.radio("Select your answer:", ["True", "False"], key=f"tf_radio_{idx}")
+    if st.button("Submit Answer", key=f"tf_submit_btn_{idx}"):
         user_answer = (answer == "True")
         st.session_state.tf_answers[idx] = user_answer
         if user_answer == question["answer"]:
@@ -46,24 +42,21 @@ with tab1:
         st.info(f"Explanation: {question['explanation']}")
 
     col1, col2, col3 = st.columns(3)
-
     with col1:
-        if st.button("Previous", disabled=(idx == 0), key="tf_prev"):
+        if st.button("Previous", disabled=(idx == 0), key=f"tf_prev_{idx}"):
             st.session_state.tf_index -= 1
-            st.experimental_rerun()
-
+            st.rerun()
     with col2:
-        if st.button("Next", disabled=(idx == len(tf_questions) - 1), key="tf_next"):
+        if st.button("Next", disabled=(idx == len(tf_questions) - 1), key=f"tf_next_{idx}"):
             st.session_state.tf_index += 1
-            st.experimental_rerun()
-
+            st.rerun()
     with col3:
-        if st.button("Show Score", key="tf_score"):
-            correct_count = sum(
+        if st.button("Show Score", key="tf_show_score"):
+            score = sum(
                 1 for i, q in enumerate(st.session_state.tf_shuffled)
                 if st.session_state.tf_answers[i] == q["answer"]
             )
-            st.success(f"Your score: {correct_count} / {len(tf_questions)}")
+            st.success(f"Your score: {score} / {len(tf_questions)}")
 
 # ------------------- TAB 2 -------------------
 with tab2:
@@ -91,14 +84,13 @@ with tab2:
     i = st.session_state.verb_index
     current = st.session_state.verb_quiz[i]
     mode = st.session_state.verb_modes[i]
-    answer_key = f"verb_answer_{i}"
     correct = current[mode]
 
     label = "Past" if mode == "past" else "Past Participle"
     st.markdown(f"### {current['base']} ({label})")
 
-    user_input = st.text_input("Type your answer:", key=answer_key)
-    if st.button("Submit Answer", key=f"verb_submit_{i}"):
+    user_input = st.text_input("Type your answer:", key=f"verb_input_{i}")
+    if st.button("Submit Answer", key=f"verb_submit_btn_{i}"):
         st.session_state.verb_answers[i] = user_input.strip().lower()
         if user_input.strip().lower() == correct:
             st.success("Correct!")
@@ -107,15 +99,15 @@ with tab2:
 
     c1, c2, c3 = st.columns(3)
     with c1:
-        if st.button("Previous", disabled=(i == 0), key="verb_prev"):
+        if st.button("Previous", disabled=(i == 0), key=f"verb_prev_{i}"):
             st.session_state.verb_index -= 1
-            st.experimental_rerun()
+            st.rerun()
     with c2:
-        if st.button("Next", disabled=(i == len(verb_data) - 1), key="verb_next"):
+        if st.button("Next", disabled=(i == len(verb_data) - 1), key=f"verb_next_{i}"):
             st.session_state.verb_index += 1
-            st.experimental_rerun()
+            st.rerun()
     with c3:
-        if st.button("Show Score-Q2", key="verb_score"):
+        if st.button("Show Score-Q2", key="verb_score_show"):
             score = sum(
                 1 for j, v in enumerate(st.session_state.verb_quiz)
                 if st.session_state.verb_answers[j] == v[st.session_state.verb_modes[j]]
@@ -128,7 +120,7 @@ with tab3:
     st.write("Text-to-Speech Demo")
 
     text = st.text_input("Enter text for TTS:", "Hello, Streamlit!")
-    if st.button("Generate TTS"):
+    if st.button("Generate TTS", key="tts_btn"):
         tts = gTTS(text)
         tts_bytes = BytesIO()
         tts.write_to_fp(tts_bytes)
