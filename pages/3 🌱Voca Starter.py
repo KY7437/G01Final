@@ -5,7 +5,7 @@ from io import BytesIO
 import random
 
 # Define tabs
-tab1, tab2, tab3, tab4 = st.tabs(["❄️ Word List", "❄️ Knowledge Map", "❄️ Meaning Master", "❄️ Spelling Master"])
+tab1, tab2, tab3, tab4 = st.tabs(["🍃 Word List", "🍃 Knowledge Map", "🍃 Meaning Master", "🍃 Spelling Master"])
 
 with tab1:
     st.markdown("### 📋 Word List")
