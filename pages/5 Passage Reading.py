@@ -50,6 +50,6 @@ with tab1:
         st.write(predefined_text)
 
 with tab2:
-    
+    st.write("W")
 with tab3:
     st.write("R")
