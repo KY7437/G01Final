@@ -172,5 +172,104 @@ with tab3:
     
 # ------------------- TAB 4 -------------------
 with tab4:
-    st.header("Paragraph TF - Coming Soon")
-    st.write("You can add paragraph-based True/False questions here later.")
+    st.header("Filling in The Blank Quiz (Level 3)")
+
+    fill_questions = [
+        {
+            "sentence": "1. The book (    ) that the king was happy.",
+            "options": ["Say", "Said", "is said", "Saying"],
+            "answer": "Said",
+            "explanation": "The correct past form is 'Said' to match the tense of the sentence."
+        },
+        {
+            "sentence": "2. A decision (   ) since Holiday.",
+            "options": ["made", "makes", "was made", "has been made"],
+            "answer": "has been made",
+            "explanation": "'Has been made' is the correct present perfect passive form."
+        },
+        {
+            "sentence": "3. My hamburger will (   ) tomorrow.",
+            "options": ["deliver", "delivered", "be delivered", "be delivering"],
+            "answer": "be delivered",
+            "explanation": "'Will be delivered' is the correct future passive construction."
+        },
+        {
+            "sentence": "4. He (   ) the cabin with own hands.",
+            "options": ["built", "build", "is built", "building"],
+            "answer": "built",
+            "explanation": "Past simple active voice is required here: 'built'."
+        },
+        {
+            "sentence": "5. The hat (   ) is on the chair now.",
+            "options": ["washes", "washed", "washing", "is washed"],
+            "answer": "washed",
+            "explanation": "'The hat washed' is past participle used as adjective, not a full passive construction."
+        },
+        {
+            "sentence": "6. Teams (   ) the project early.",
+            "options": ["completed", "are completed", "to complete", "will be completed"],
+            "answer": "completed",
+            "explanation": "Simple past active form fits here: 'Teams completed the project.'"
+        },
+        {
+            "sentence": "7. The invitation (   ) last week.",
+            "options": ["sent", "is sent", "was sent", "to sending"],
+            "answer": "was sent",
+            "explanation": "Past passive form: 'was sent' is appropriate for past time marker 'last week'."
+        },
+        {
+            "sentence": "8. Those shoes (   ) in Italy.",
+            "options": ["made", "were made", "are making", "have made"],
+            "answer": "were made",
+            "explanation": "Past passive: 'were made'."
+        },
+        {
+            "sentence": "9. My father thought that the cookies (   ) this morning.",
+            "options": ["baked", "is baking", "were made", "to make"],
+            "answer": "were made",
+            "explanation": "Reported speech in past, so passive past: 'were made'."
+        },
+        {
+            "sentence": "10. She (   ) the car right now.",
+            "options": ["washed", "is washing", "will be washing", "should be washed"],
+            "answer": "is washing",
+            "explanation": "Present continuous active: 'is washing'."
+        },
+    ]
+
+    if "fill_index" not in st.session_state:
+        st.session_state.fill_index = 0
+        st.session_state.fill_answers = [None] * len(fill_questions)
+
+    idx = st.session_state.fill_index
+    q = fill_questions[idx]
+
+    st.subheader(f"Question {idx + 1} of {len(fill_questions)}")
+    st.markdown(f"### {q['sentence']}")
+
+    choice = st.radio("Choose the correct answer:", q["options"], key=f"fill_radio_{idx}")
+
+    if st.button("Submit Answer", key=f"fill_submit_{idx}"):
+        st.session_state.fill_answers[idx] = choice
+        if choice == q["answer"]:
+            st.success("✅ Correct!")
+        else:
+            st.error("❌ Incorrect.")
+        st.info(f"**Explanation:** {q['explanation']}")
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("Previous", disabled=(idx == 0), key="fill_prev"):
+            st.session_state.fill_index -= 1
+            st.rerun()
+    with col2:
+        if st.button("Next", disabled=(idx == len(fill_questions) - 1), key="fill_next"):
+            st.session_state.fill_index += 1
+            st.rerun()
+    with col3:
+        if st.button("Show Score", key="fill_score"):
+            score = sum(
+                1 for i, q in enumerate(fill_questions)
+                if st.session_state.fill_answers[i] == q["answer"]
+            )
+            st.success(f"🏆 Your score: {score} / {len(fill_questions)}")
