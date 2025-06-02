@@ -14,7 +14,7 @@ with tab2:
     st.write("Be verb plus participle")
     st.write("""In this section, we will take a look about the passives.
     
-    When we use an active verb, we say what the subject does: 
+   When we use an active verb, we say what the subject does: 
    -  My grandfather was a builder. He built this house in 1981.
    -  It’s a big company. It employs two hundred people.
    
