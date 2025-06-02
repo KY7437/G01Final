@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import random
 
+st.title("Voca Starter")
+st.write("these apps are for vocabulary study")
+
 # Load vocabulary list from CSV
 @st.cache_data
 def load_vocab():
