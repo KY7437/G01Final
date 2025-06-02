@@ -33,7 +33,7 @@ blank_indices = sorted(random.sample(word_indices, num_blanks))
 # ✅ 빈칸 처리
 for i, word in enumerate(words):
     if i in blank_indices:
-        with st.button("⬜", key=i):
+        if st.button("⬜", key=i):
             st.write(word)
     else:
         st.write(word, end=" ")
