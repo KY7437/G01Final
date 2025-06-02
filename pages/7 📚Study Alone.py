@@ -9,7 +9,7 @@ st.set_page_config(page_title="📚Study Alone", layout="wide")
 st.title("📚Study Alone")
 
 # Define tabs
-tab1, tab2, tab3 = st.tabs(["🔍Guidelines", "✏️Memorization of the text", "✏️Active to Passive Practice"])
+tab1, tab2, tab3 = st.tabs(["🔍 Guidelines", "✏️ Memorization of the text", "✏️ Active to Passive Practice"])
 
 with tab1:
     st.title("Guidelines")
