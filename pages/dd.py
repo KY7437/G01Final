@@ -30,15 +30,40 @@ num_blanks = int(len(words) * blank_ratio)
 # ✅ 무작위로 빈칸 만들 단어 선택
 blank_indices = sorted(random.sample(word_indices, num_blanks))
 
-# ✅ 빈칸 처리
+# ✅ 정답 단어 리스트 추출
+answer_words = []
 processed_words = []
+
 for i, word in enumerate(words):
     if i in blank_indices:
-        # 기호 포함 제거 (문장 부호 등 유지)
-        blank = "_____" + word[len(word.strip(".,!?;:")):]  # e.g., "word." → "_____."  
+        stripped = word.strip(".,!?;:")
+        suffix = word[len(stripped):]  # 기호 추출
+        answer_words.append(stripped)
+        blank = "_____" + suffix
         processed_words.append(blank)
     else:
         processed_words.append(word)
 
 # ✅ 한 줄로 출력
 st.markdown(" ".join(processed_words))
+
+# ✅ 사용자 입력 받기
+user_input = st.text_input("빈칸에 들어갈 단어들을 순서대로, 콤마로 입력하세요 (예: Willowby,Sarah,books,...)")
+
+if st.button("제출"):
+    user_answers = [w.strip() for w in user_input.split(",")]
+    
+    st.subheader("정답 확인")
+    for idx, (correct, user) in enumerate(zip(answer_words, user_answers)):
+        if correct.lower() == user.lower():
+            st.markdown(f"✅ **{idx+1}. {user}** (정답)")
+        else:
+            st.markdown(f"❌ **{idx+1}. {user}** → 정답: **{correct}**")
+
+    if len(user_answers) < len(answer_words):
+        st.warning(f"❗ 입력한 단어 수가 부족합니다. {len(answer_words)}개의 빈칸이 있습니다.")
+    elif len(user_answers) > len(answer_words):
+        st.warning(f"❗ 입력한 단어 수가 너무 많습니다. {len(answer_words)}개의 빈칸이 있습니다.")
+    else:
+        score = sum([a.lower() == b.lower() for a, b in zip(answer_words, user_answers)])
+        st.success(f"총 맞은 개수: {score} / {len(answer_words)}")
