@@ -43,29 +43,12 @@ def main():
     st.title("Grammar")
 
     # Define tabs
-    tab1, tab2, tab3, tab4 = st.tabs(["🍃 Read after TTS", "🍃 Role Play", "🍃 Tab 3", "🍃 Tab 4"])
+    tab1, tab2, tab3, tab4 = st.tabs(["🍃 Grammar Concept", "🍃 Role Play"])
 
     # Content for the first tab
     with tab1:
-        st.header("Sentence by Sentence TTS Reader")
-
-        # Display current sentence
-        sentence = get_tts()
-        st.text_area("Current Sentence", value=sentence, height=100)
-
-        # Play audio
-        audio_file = open("output.mp3", "rb")
-        audio_bytes = audio_file.read()
-        st.audio(audio_bytes, format="audio/mp3")
-
-        # Navigation buttons
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("◀ Previous") and st.session_state.index > 0:
-                st.session_state.index -= 1
-        with col2:
-            if st.button("Next ▶") and st.session_state.index < len(sentences) - 1:
-                st.session_state.index += 1
+        st.header("Passives")
+        st.write("Be verb plus participle")
 
     with tab2:
         st.header("Role Play")
@@ -152,13 +135,6 @@ def main():
                         st.write(line[3:])
                     else:
                         st.write("")
-
-
-    with tab3:
-        st.header("Tab 3 Content")
-
-    with tab4:
-        st.header("Tab 4 Content")
 
 if __name__ == "__main__":
     main()
