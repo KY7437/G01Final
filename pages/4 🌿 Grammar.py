@@ -7,35 +7,48 @@ tab1, tab2, tab3, tab4 = st.tabs(["🍃 Guidelines", "🍃 Grammar Concept", "�
 
 with tab1:
     st.title("Guidelines")
-   
 
 with tab2:
     st.title("Passives")
-    st.write("Be verb plus participle")
-    st.write("""In this section, we will take a look about the passives.
     
-   When we use an **active verb**, we say **what the subject does**: 
-   -  My grandfather was a builder. He built this house in 1981.
-   -  It’s a big company. It employs two hundred people.
-   
-   When we use a **passive verb**, we say **what happens to the subject**:
-   - ‘How old is this house?’ ‘It was built in 1981.’
-   -  Two hundred people are employed by the company.
+    # Font size scaler
+    font_size = st.slider("Select Font Size", min_value=12, max_value=40, value=20, step=2)
 
-   When we use the passive, who or what causes the action is often unknown or unimportant:
-   - A lot of money was stolen in the robbery. (somebody stole it, but we don’t know who)
-   - Is this room cleaned every day? (does somebody clean it? – it’s not important who)
-   
-   If we want to say who does or what causes the action, we use **by**:
-   - This house was built **by my grandfather**.
-   - Two hundred people are employed **by the company**.
+    # Apply the selected font size
+    st.markdown(f"""
+        <style>
+        .passive-text {{
+            font-size: {font_size}px !important;
+        }}
+        </style>
+        """, unsafe_allow_html=True)
 
-   The passive is be (is/was etc.) + past participle (done/cleaned/seen etc.):
-   (be) done (be) cleaned (be) damaged (be) built (be) seen etc.
-   
-   The past participle oft en ends in -ed (cleaned/damaged etc.), but many important verbs are irregular (built/done/stolen etc.). To practice irregular forms more, go to Voca Starter and use the app deploted on tap 3.
+    st.markdown("""
+        <div class="passive-text">
+        Be verb plus participle<br>
+        In this section, we will take a look about the passives.<br><br>
+        When we use an <strong>active verb</strong>, we say <strong>what the subject does</strong>: <br>
+        - My grandfather was a builder. He built this house in 1981.<br>
+        - It’s a big company. It employs two hundred people.<br><br>
 
-""")
+        When we use a <strong>passive verb</strong>, we say <strong>what happens to the subject</strong>:<br>
+        - ‘How old is this house?’ ‘It was built in 1981.’<br>
+        - Two hundred people are employed by the company.<br><br>
+
+        When we use the passive, who or what causes the action is often unknown or unimportant:<br>
+        - A lot of money was stolen in the robbery. (somebody stole it, but we don’t know who)<br>
+        - Is this room cleaned every day? (does somebody clean it? – it’s not important who)<br><br>
+
+        If we want to say who does or what causes the action, we use <strong>by</strong>:<br>
+        - This house was built <strong>by my grandfather</strong>.<br>
+        - Two hundred people are employed <strong>by the company</strong>.<br><br>
+
+        The passive is be (is/was etc.) + past participle (done/cleaned/seen etc.):<br>
+        (be) done (be) cleaned (be) damaged (be) built (be) seen etc.<br><br>
+
+        The past participle often ends in -ed (cleaned/damaged etc.), but many important verbs are irregular (built/done/stolen etc.). To practice irregular forms more, go to Voca Starter and use the app deployed on tab 3.
+        </div>
+    """, unsafe_allow_html=True)
 
 with tab3:
     st.title("Role Play")
@@ -125,32 +138,3 @@ with tab3:
 
 with tab4:
     st.title("Drawing Activity")
-    
-import streamlit as st
-from streamlit_drawable_canvas import st_canvas
-import numpy as np
-
-def main():
-    st.title("Streamlit 그림판 (굵기 & 색깔 변경 가능)")
-
-    # 사용자 입력 위젯
-    stroke_width = st.slider("선 굵기", min_value=1, max_value=25, value=5)
-    stroke_color = st.color_picker("선 색깔", "#000000")
-
-    canvas_result = st_canvas(
-        fill_color="rgba(255, 165, 0, 0.3)",  # 투명 오렌지색 배경
-        stroke_width=stroke_width,
-        stroke_color=stroke_color,
-        background_color="#eeeeee",
-        height=400,
-        width=600,
-        drawing_mode="freedraw",
-        key="canvas",
-    )
-
-    if canvas_result.image_data is not None:
-        img = canvas_result.image_data.astype(np.uint8)
-        st.image(img)
-
-if __name__ == "__main__":
-    main()
