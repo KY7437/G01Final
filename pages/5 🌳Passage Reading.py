@@ -66,7 +66,9 @@ with tab1:
 with tab2:
     # Function to split text into sentences
     def split_text_into_sentences(text):
-        return re.split(r'(?<=[.!?]) +', text)
+        # Stripping any unnecessary whitespace and splitting on the regex pattern
+        sentences = re.split(r'(?<=[.!?])\s+', text.strip())
+        return sentences
 
     # Sample passage
     passage = """
