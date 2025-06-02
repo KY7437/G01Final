@@ -172,104 +172,105 @@ with tab3:
     
 # ------------------- TAB 4 -------------------
 with tab4:
-    st.header("Filling in The Blank Quiz (Level 3)")
+    st.header("Choose the Correct Verb Form (Level 3)")
 
     fill_questions = [
         {
             "sentence": "1. The book (    ) that the king was happy.",
             "options": ["Say", "Said", "is said", "Saying"],
             "answer": "Said",
-            "explanation": "The correct past form is 'Said' to match the tense of the sentence."
+            "explanation": "'Said' is the past tense of 'say' and fits grammatically. This is an active sentence meaning the book stated something in the past."
         },
         {
             "sentence": "2. A decision (   ) since Holiday.",
             "options": ["made", "makes", "was made", "has been made"],
             "answer": "has been made",
-            "explanation": "'Has been made' is the correct present perfect passive form."
+            "explanation": "The phrase 'since Holiday' suggests the present perfect tense. 'A decision' is the subject, and since it receives the action, the passive form 'has been made' is correct."
         },
         {
             "sentence": "3. My hamburger will (   ) tomorrow.",
             "options": ["deliver", "delivered", "be delivered", "be delivering"],
             "answer": "be delivered",
-            "explanation": "'Will be delivered' is the correct future passive construction."
+            "explanation": "This is a passive future sentence. The correct structure is 'will + be + past participle'."
         },
         {
             "sentence": "4. He (   ) the cabin with own hands.",
             "options": ["built", "build", "is built", "building"],
             "answer": "built",
-            "explanation": "Past simple active voice is required here: 'built'."
+            "explanation": "This is a simple past active sentence. 'He' did the action in the past, so 'built' is appropriate."
         },
         {
             "sentence": "5. The hat (   ) is on the chair now.",
             "options": ["washes", "washed", "washing", "is washed"],
             "answer": "washed",
-            "explanation": "'The hat washed' is past participle used as adjective, not a full passive construction."
+            "explanation": "'Washed' is a past participle used as an adjective to describe 'the hat'. The sentence means the washed hat is now on the chair."
         },
         {
             "sentence": "6. Teams (   ) the project early.",
             "options": ["completed", "are completed", "to complete", "will be completed"],
             "answer": "completed",
-            "explanation": "Simple past active form fits here: 'Teams completed the project.'"
+            "explanation": "This is a simple past active sentence. The teams did the action, so 'completed' is correct."
         },
         {
             "sentence": "7. The invitation (   ) last week.",
             "options": ["sent", "is sent", "was sent", "to sending"],
             "answer": "was sent",
-            "explanation": "Past passive form: 'was sent' is appropriate for past time marker 'last week'."
+            "explanation": "'Last week' indicates past time, and the subject 'The invitation' received the action. Use the simple past passive form: 'was sent'."
         },
         {
             "sentence": "8. Those shoes (   ) in Italy.",
             "options": ["made", "were made", "are making", "have made"],
             "answer": "were made",
-            "explanation": "Past passive: 'were made'."
+            "explanation": "'Those shoes' is the subject and receives the action. 'In Italy' is extra detail. The correct passive past form is 'were made'."
         },
         {
             "sentence": "9. My father thought that the cookies (   ) this morning.",
             "options": ["baked", "is baking", "were made", "to make"],
             "answer": "were made",
-            "explanation": "Reported speech in past, so passive past: 'were made'."
+            "explanation": "'The cookies' is the subject of the noun clause, and they received the action. Past passive form 'were made' is correct."
         },
         {
-            "sentence": "10. She (   ) the car right now.",
+            "sentence": "10. She (  ) the car right now.",
             "options": ["washed", "is washing", "will be washing", "should be washed"],
             "answer": "is washing",
-            "explanation": "Present continuous active: 'is washing'."
-        },
+            "explanation": "'Right now' signals present continuous tense. 'She is washing' is the correct active form for an action happening at the moment."
+        }
     ]
 
     if "fill_index" not in st.session_state:
         st.session_state.fill_index = 0
+        st.session_state.fill_shuffled = random.sample(fill_questions, len(fill_questions))
         st.session_state.fill_answers = [None] * len(fill_questions)
 
-    idx = st.session_state.fill_index
-    q = fill_questions[idx]
+    i = st.session_state.fill_index
+    current_q = st.session_state.fill_shuffled[i]
 
-    st.subheader(f"Question {idx + 1} of {len(fill_questions)}")
-    st.markdown(f"### {q['sentence']}")
+    st.subheader(f"Question {i + 1} of {len(fill_questions)}")
+    st.write(f"**{current_q['sentence']}**")
 
-    choice = st.radio("Choose the correct answer:", q["options"], key=f"fill_radio_{idx}")
+    answer = st.radio("Choose the correct answer:", current_q["options"], key=f"fill_radio_{i}")
 
-    if st.button("Submit Answer", key=f"fill_submit_{idx}"):
-        st.session_state.fill_answers[idx] = choice
-        if choice == q["answer"]:
-            st.success("✅ Correct!")
+    if st.button("Submit Answer", key=f"fill_submit_{i}"):
+        st.session_state.fill_answers[i] = answer
+        if answer == current_q["answer"]:
+            st.success("Correct!")
         else:
-            st.error("❌ Incorrect.")
-        st.info(f"**Explanation:** {q['explanation']}")
+            st.error(f"Incorrect. The correct answer is **{current_q['answer']}**.")
+        st.info(f"Explanation: {current_q['explanation']}")
 
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        if st.button("Previous", disabled=(idx == 0), key="fill_prev"):
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        if st.button("Previous", disabled=(i == 0), key="fill_prev"):
             st.session_state.fill_index -= 1
             st.rerun()
-    with col2:
-        if st.button("Next", disabled=(idx == len(fill_questions) - 1), key="fill_next"):
+    with c2:
+        if st.button("Next", disabled=(i == len(fill_questions) - 1), key="fill_next"):
             st.session_state.fill_index += 1
             st.rerun()
-    with col3:
+    with c3:
         if st.button("Show Score", key="fill_score"):
             score = sum(
-                1 for i, q in enumerate(fill_questions)
-                if st.session_state.fill_answers[i] == q["answer"]
+                1 for j, q in enumerate(st.session_state.fill_shuffled)
+                if st.session_state.fill_answers[j] == q["answer"]
             )
-            st.success(f"🏆 Your score: {score} / {len(fill_questions)}")
+            st.success(f"Your score: {score} / {len(fill_questions)}")
