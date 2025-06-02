@@ -39,14 +39,14 @@ with tab1:
         st.error(f"Error loading word list: {e}")
 
 def display_quiz(quiz_type):
-    if quiz_type == "meaning":
+    if quiz_type == "Meaning":
         st.title("📖 Vocabulary Meaning Quiz")
         quiz_items = st.session_state.meaning_quiz_items
         current_q = st.session_state.current_q_meaning
         score = st.session_state.score_meaning
         key_suffix = "meaning"
     else:
-        st.title("📚 Vocabulary Quiz")
+        st.title("📚 Spelling")
         quiz_items = st.session_state.spelling_quiz_items
         current_q = st.session_state.current_q_spelling
         score = st.session_state.score_spelling
