@@ -14,21 +14,21 @@ with tab2:
     st.write("Be verb plus participle")
     st.write("""In this section, we will take a look about the passives.
     
-   When we use an active verb, we say what the subject does: 
+   When we use an **active verb**, we say **what the subject does**: 
    -  My grandfather was a builder. He built this house in 1981.
    -  It’s a big company. It employs two hundred people.
    
-   When we use a passive verb, we say what happens to the subject:
+   When we use a **passive verb**, we say **what happens to the subject**:
    - ‘How old is this house?’ ‘It was built in 1981.’
    -  Two hundred people are employed by the company.
 
-   When we use the passive, who or what causes the action is oft en unknown or unimportant:
+   When we use the passive, who or what causes the action is often unknown or unimportant:
    - A lot of money was stolen in the robbery. (somebody stole it, but we don’t know who)
    - Is this room cleaned every day? (does somebody clean it? – it’s not important who)
    
-   If we want to say who does or what causes the action, we use by:
-   - This house was built by my grandfather.
-   - Two hundred people are employed by the company
+   If we want to say who does or what causes the action, we use **by**:
+   - This house was built **by my grandfather**.
+   - Two hundred people are employed **by the company**.
 
    The passive is be (is/was etc.) + past participle (done/cleaned/seen etc.):
    (be) done (be) cleaned (be) damaged (be) built (be) seen etc.
