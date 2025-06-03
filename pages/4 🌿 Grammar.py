@@ -150,6 +150,13 @@ with tab3:
     st.write("This section is for the second class activity. Students should be aware of essential words, the concept of passives, and comprehension of the passage.")
 
     st.header("Draw to describe the provided sentence.")
+    st.write("Post it on padlet.")
+        # Add hyperlink to Padlet
+    st.markdown(
+        '<a href="https://padlet.com/eugene7437/padlet-u8obqfdnqagbzla" target="_blank">Padlet</a>',
+        unsafe_allow_html=True
+    )
+
 
     # User input widget
     stroke_width = st.slider("Thickness", min_value=1, max_value=25, value=5)
@@ -170,9 +177,4 @@ with tab3:
         img = canvas_result.image_data.astype(np.uint8)
         st.image(img)
     
-    # Add hyperlink to Padlet
-    st.markdown(
-        '<a href="https://padlet.com/eugene7437/padlet-u8obqfdnqagbzla" target="_blank">Padlet</a>',
-        unsafe_allow_html=True
-    )
 
