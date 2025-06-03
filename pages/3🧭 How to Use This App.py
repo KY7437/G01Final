@@ -23,8 +23,8 @@ with st.expander("🌿 2. Grammar"):
 # Section 3: Passage Reading
 with st.expander("🌳 3. Passage Reading"):
     st.markdown("""
-- **Korean Translation**: Understand difficult parts through L1 support.  
-- **TTS (Text-to-Speech)**: Listen to native-like pronunciation.  
+- **TTS(Text to Speech)**: Listen to the full passage. Students can opt to see text and translation or not.
+- **Setence Reader**: Listen to native-like pronunciation, sentence by sentence.
     """)
 
 # Section 4: Quiz
