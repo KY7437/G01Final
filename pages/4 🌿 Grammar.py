@@ -172,7 +172,7 @@ with tab3:
     
     # Add hyperlink to Padlet
     st.markdown(
-        '<a href="https://padlet.com/eugene7437/padlet-4yitfhu20q8iy032" target="_blank">Padlet</a>',
+        '<a href="https://padlet.com/eugene7437/padlet-u8obqfdnqagbzla" target="_blank">Padlet</a>',
         unsafe_allow_html=True
     )
 
