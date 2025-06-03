@@ -12,10 +12,6 @@ st.title("📚Study Alone")
 tab1, tab2, tab3 = st.tabs(["🔍 Guidelines", "✏️ Memorization of the text", "✏️ Active to Passive Practice"])
 
 with tab1:
-
-    import streamlit as st
-     # Define the tab
-     with st.tabs(["Guidelines"])[0]:
     # Font size scaler
     font_size = st.slider("Select Font Size", min_value=12, max_value=40, value=20, step=2)
 
@@ -41,6 +37,7 @@ with tab1:
         You may try as many times as you want. But please post your results once.</p>
     </div>
     """, unsafe_allow_html=True)
+
 
       
 with tab2:
