@@ -169,3 +169,9 @@ with tab3:
     if canvas_result.image_data is not None:
         img = canvas_result.image_data.astype(np.uint8)
         st.image(img)
+        
+        html_content = '<a href="https://padlet.com/eugene7437/padlet-u8obqfdnqagbzla="_blank">Padlet</a>'
+        with open("padlet_link.html", "w") as file:
+            file.write(html_content)
+            print("HTML file created with a hyperlink to Padlet.")
+
