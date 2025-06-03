@@ -13,9 +13,15 @@ tab1, tab2, tab3 = st.tabs(["🔍 Guidelines", "✏️ Memorization of the text"
 
 with tab1:
     st.title("Guidelines")
-    st.write("In this section, the apps are designed for students to study efficiently, by themselves.")
+    st.write("In this section, the apps are designed for students to study efficiently, by themselves. You can use these apps whenever you needed, unless you lose the access.
+    If you lost it, and you need to access, please talk to your teacher. ")
     st.header("Homework")
-    st.write("""Try these review app by yourself. Do not share your answer with anyone. Then, capture or screenshot your result (of all tabs) and post it on padlet below.""")
+    st.write("""
+    Try these review app by yourself. Do not share your answer with anyone. 
+    Then, capture or screenshot your result (of all tabs) and post it on padlet below.
+    When you post it on padlet, write your name and student number. 
+    You may try as many times as you want. But please post your results once.
+      """)
 
 with tab2:
     st.title("Memorization of the Text")
