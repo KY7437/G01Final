@@ -3,11 +3,8 @@ import streamlit as st
 st.title("Into the World of Stories")
 st.caption("The Midnight Library lesson 1")
 
-st.write("📘 About This App
-
-Welcome to the Middle School English Learning App, a comprehensive platform designed to help students improve their English skills through interactive and engaging activities. This app combines vocabulary, grammar, reading, and quizzes in one easy-to-use interface—ideal for independent study or classroom support.
-
-")
+st.write("""📘About This App
+Welcome to the Middle School English Learning App, a comprehensive platform designed to help students improve their English skills through interactive and engaging activities. This app combines vocabulary, grammar, reading, and quizzes in one easy-to-use interface—ideal for independent study or classroom support.""")
 st.write("Welcome🎶")
 st.markdown("---")
 
