@@ -1,5 +1,15 @@
 import streamlit as st
 
+
+
+st.title("📘 About This App")
+
+st.markdown("""
+Welcome to the **Middle School English Learning App**, a comprehensive platform designed to help students improve their English skills through **interactive and engaging activities**.  
+This app integrates vocabulary, grammar, reading, and quizzes in one easy-to-use interface—perfect for **independent study** or **classroom support**.
+
+---
+
 # 새로운 유튜브 영상 삽입
 st.markdown("""
 <iframe width="300" height="200" src="https://www.youtube.com/embed/38SFyPRu_WU" 
@@ -8,13 +18,6 @@ allowfullscreen></iframe>
 """, unsafe_allow_html=True)
 
 st.write("This video is designed to help you better understand the lesson.")
-
-st.title("📘 About This App")
-
-st.markdown("""
-Welcome to the **Middle School English Learning App**, a comprehensive platform designed to help students improve their English skills through **interactive and engaging activities**.  
-This app integrates vocabulary, grammar, reading, and quizzes in one easy-to-use interface—perfect for **independent study** or **classroom support**.
-
 
 ---
 
