@@ -138,7 +138,7 @@ with tab4:
     st.title("Drawing Activity")
 
     def main():
-        st.title("Streamlit 그림판 (굵기 & 색깔 변경 가능)")
+        st.title("Drawing")
 
         # 사용자 입력 위젯
         stroke_width = st.slider("선 굵기", min_value=1, max_value=25, value=5)
