@@ -2,6 +2,33 @@ import streamlit as st
 
 st.set_page_config(page_title="How to Use This App", layout="centered")
 
+def scale_font_size(base_size, scale_factor):
+    """
+    Scale the font size based on a given scale factor.
+
+    Parameters:
+    - base_size (int or float): The original font size.
+    - scale_factor (float): The factor by which to scale the font size.
+
+    Returns:
+    - int: The new scaled font size.
+    """
+    if base_size <= 0:
+        raise ValueError("Base size must be greater than zero.")
+    if scale_factor <= 0:
+        raise ValueError("Scale factor must be greater than zero.")
+    
+    new_size = base_size * scale_factor
+    return int(new_size)
+
+# Example usage
+base_font_size = 12
+scale_factor = 1.5
+new_font_size = scale_font_size(base_font_size, scale_factor)
+print(f"The new font size is: {new_font_size}")
+
+
+
 st.title("🧭 How to Use This App")
 
 # Section 1: Voca Starter
