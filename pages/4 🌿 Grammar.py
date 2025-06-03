@@ -5,12 +5,9 @@ from streamlit_drawable_canvas import st_canvas
 import numpy as np
 
 # Define tabs
-tab1, tab2, tab3, tab4 = st.tabs(["🔍 Guidelines", "🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
+tab1, tab2, tab3, tab4 = st.tabs(["🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
 
 with tab1:
-    st.title("Guidelines")
-
-with tab2:
     st.title("Passives")
     st.markdown("Raymond Murphy, (2019). English Grammar in Use, Cambridge, p. 84")
     
@@ -61,7 +58,7 @@ allowfullscreen></iframe>
 
     st.write("Watch this if you want to learn more about the passive voice!")
 
-with tab3:
+with tab2:
     import streamlit as st
     from gtts import gTTS
     import tempfile
@@ -160,7 +157,7 @@ with tab3:
 
 
 
-with tab4:
+with tab3:
     st.title("Drawing Activity")
     st.write("This section is for the second class activity. Students should aware of essential words, the concept of passives, and comprehenshion of the passage.")
 
