@@ -149,6 +149,7 @@ with tab3:
 
 with tab4:
     st.title("Drawing Activity")
+    st.write("This section is for the second class activity. Students should aware of essential words, the concept of passives, and comprehenshion of the passage.")
 
     def main():
         st.title("Drawing")
