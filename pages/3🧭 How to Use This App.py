@@ -9,10 +9,12 @@ font_size = st.slider("Select Font Size", min_value=12, max_value=40, value=20, 
 
 # Function to display text with different sizes
 def display_text_with_size(text, size):
-    if size >= 24:
-        st.write(f"### {text}")
+    if size >= 30:
+        st.markdown(f"## {text}")
+    elif size >= 24:
+        st.markdown(f"### {text}")
     else:
-        st.write(text)
+        st.markdown(text)
 
 # Section 1: Voca Starter
 with st.expander("🌱 1. Voca Starter"):
