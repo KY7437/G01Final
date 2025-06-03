@@ -147,7 +147,7 @@ with tab2:
 
 with tab3:
     st.title("Drawing Activity")
-    st.write("This section is for the second class activity. Students should aware of essential words, the concept of passives, and comprehension of the passage.")
+    st.write("This section is for the second class activity. Students should be aware of essential words, the concept of passives, and comprehension of the passage.")
 
     st.header("Draw to describe the provided sentence.")
 
@@ -169,9 +169,10 @@ with tab3:
     if canvas_result.image_data is not None:
         img = canvas_result.image_data.astype(np.uint8)
         st.image(img)
-        
-        html_content = '<a href="https://padlet.com/eugene7437/padlet-u8obqfdnqagbzla="_blank">Padlet</a>'
-        with open("padlet_link.html", "w") as file:
-            file.write(html_content)
-            print("HTML file created with a hyperlink to Padlet.")
+    
+    # Add hyperlink to Padlet
+    st.markdown(
+        '<a href="https://padlet.com/eugene7437/padlet-4yitfhu20q8iy032" target="_blank">Padlet</a>',
+        unsafe_allow_html=True
+    )
 
