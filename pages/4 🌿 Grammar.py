@@ -152,7 +152,7 @@ with tab4:
     st.write("This section is for the second class activity. Students should aware of essential words, the concept of passives, and comprehenshion of the passage.")
 
     def main():
-        st.title("Drawing")
+        st.header("Draw to describe the provided sentence.")
 
         # 사용자 입력 위젯
         stroke_width = st.slider("선 굵기", min_value=1, max_value=25, value=5)
