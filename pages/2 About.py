@@ -4,7 +4,7 @@ st.title(" 🎬 Tour ")
 
 # 새로운 유튜브 영상 삽입
 st.markdown("""
-<iframe width="700" height="400" src="https://www.youtube.com/embed/38SFyPRu_WU" 
+<iframe width="300" height="200" src="https://www.youtube.com/embed/38SFyPRu_WU" 
 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
 allowfullscreen></iframe>
 """, unsafe_allow_html=True)
