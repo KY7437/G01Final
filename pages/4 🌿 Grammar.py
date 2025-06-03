@@ -168,8 +168,8 @@ with tab4:
         st.header("Draw to describe the provided sentence.")
 
         # 사용자 입력 위젯
-        stroke_width = st.slider("선 굵기", min_value=1, max_value=25, value=5)
-        stroke_color = st.color_picker("선 색깔", "#000000")
+        stroke_width = st.slider("Thickness", min_value=1, max_value=25, value=5)
+        stroke_color = st.color_picker("Color", "#000000")
 
         canvas_result = st_canvas(
             fill_color="rgba(255, 165, 0, 0.3)",  # 투명 오렌지색 배경
