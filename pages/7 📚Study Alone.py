@@ -33,9 +33,9 @@ with tab1:
         <h2>Homework</h2>
         <p>Try these review app by yourself. Do not share your answer with anyone. <br>
         Then, capture or screenshot your result (of all tabs) and post it on padlet below.<br>
-        Padlet: "https://padlet.com/eugene7437/padlet-4yitfhu20q8iy032"<br>
         When you post it on padlet, write your name and student number. <br>
-        You may try as many times as you want. But please post your results once.</p>
+        You may try as many times as you want. But please post your results once.<br><br>
+        Padlet: https://padlet.com/eugene7437/padlet-4yitfhu20q8iy032</p>
     </div>
     """, unsafe_allow_html=True)
 
