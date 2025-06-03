@@ -50,16 +50,16 @@ with tab2:
    
     import streamlit as st
 
-st.title("🎬 What Is the Passive Voice?")
+    st.title("🎬 What Is the Passive Voice?")
 
-# iframe을 사용해 영상 크기 조절
-st.markdown("""
-<iframe width="400" height="300" src="https://www.youtube.com/embed/JDuMljo0uik" 
+    # iframe을 사용해 영상 크기 조절
+    st.markdown("""
+    <iframe width="400" height="300" src="https://www.youtube.com/embed/JDuMljo0uik" 
 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
 allowfullscreen></iframe>
 """, unsafe_allow_html=True)
 
-st.write("Watch this if you want to learn more about the passive voice!")
+    st.write("Watch this if you want to learn more about the passive voice!")
 
 with tab3:
     import streamlit as st
