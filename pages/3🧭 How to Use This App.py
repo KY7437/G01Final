@@ -1,8 +1,5 @@
 import streamlit as st
 
-# Set the page configuration
-st.set_page_config(page_title="Font Size Scaler", layout="centered")
-
 def scale_font_size(base_size, scale_factor):
     """
     Scale the font size based on a given scale factor.
@@ -22,22 +19,13 @@ def scale_font_size(base_size, scale_factor):
     new_size = base_size * scale_factor
     return int(new_size)
 
-# Streamlit app interface
-st.title("Font Size Scaler")
+# Example usage
+base_font_size = 20
+scale_factor = 1.5  # Example scale factor
 
-# Input for base font size
-base_font_size = st.number_input("Enter the base font size:", min_value=1, value=12)
-
-# Input for scale factor
-scale_factor = st.number_input("Enter the scale factor:", min_value=0.1, value=1.5)
-
-# Button to perform scaling
-if st.button("Scale Font Size"):
-    try:
-        new_font_size = scale_font_size(base_font_size, scale_factor)
-        st.success(f"The new font size is: {new_font_size}")
-    except ValueError as e:
-        st.error(str(e))
+# Calculate new font size
+new_font_size = scale_font_size(base_font_size, scale_factor)
+print(f"The new scaled font size is: {new_font_size}")
 
 
 
