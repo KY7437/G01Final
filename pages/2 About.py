@@ -1,7 +1,5 @@
 import streamlit as st
 
-st.title(" 🎬 Tour ")
-
 # 새로운 유튜브 영상 삽입
 st.markdown("""
 <iframe width="300" height="200" src="https://www.youtube.com/embed/38SFyPRu_WU" 
