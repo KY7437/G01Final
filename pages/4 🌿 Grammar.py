@@ -147,15 +147,13 @@ with tab2:
 
 with tab3:
     st.title("Drawing Activity")
-    st.write("This section is for the second class activity. Students should be aware of essential words, the concept of passives, and comprehension of the passage.")
-
+    st.write("""This section is for the second class activity. Students should be aware of essential words, the concept of passives, and comprehension of the passage.""")
     st.header("Draw to describe the provided sentence.")
-    st.write("Post it on padlet.")
-        # Add hyperlink to Padlet
     st.markdown(
-        '<a href="https://padlet.com/eugene7437/padlet-u8obqfdnqagbzla" target="_blank">Padlet</a>',
-        unsafe_allow_html=True
-    )
+    'Post it on <a href="https://padlet.com/eugene7437/padlet-u8obqfdnqagbzla" target="_blank">Padlet</a>.',
+    unsafe_allow_html=True
+)
+
 
 
     # User input widget
