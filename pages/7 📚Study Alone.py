@@ -35,7 +35,7 @@ with tab1:
         Then, capture or screenshot your result (of all tabs) and post it on padlet below.<br>
         When you post it on padlet, write your name and student number. <br>
         You may try as many times as you want. But please post your results once.<br>
-        You don't have to clear all difficulties on Memorization of the test.<br><br>
+        You don't have to clear all difficulties on Memorization of the test, but you should show at least one result of it on padlet.<br><br>
         <a href="https://padlet.com/eugene7437/padlet-4yitfhu20q8iy032" target="_blank">Padlet</a></p>
     </div>
     """, unsafe_allow_html=True)
