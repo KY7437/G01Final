@@ -37,8 +37,7 @@ with st.expander("🌲 4. Quiz"):
 # Section 5: Study Alone
 with st.expander("📚 5. Study Alone"):
     st.markdown("""
-- **Memorization of the text**: Revisit reading texts with missing words.  
-- **Passive Voice Quiz**: Identify or rewrite sentences in the passive voice.  
+- **Memorization of the text**: Revisit reading texts with missing words.   
 - **Active to Passive practice**: Convert active voice sentences into passive voice interactively.
     """)
 
