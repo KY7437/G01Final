@@ -47,6 +47,19 @@ with tab2:
         The past participle often ends in -ed (cleaned/damaged etc.), but many important verbs are irregular (built/done/stolen etc.). To practice irregular forms more, go to Voca Starter and use the app deployed on tab 3.
         </div>
     """, unsafe_allow_html=True)
+   
+    import streamlit as st
+
+st.title("🎬 What Is the Passive Voice?")
+
+# iframe을 사용해 영상 크기 조절
+st.markdown("""
+<iframe width="400" height="300" src="https://www.youtube.com/embed/JDuMljo0uik" 
+frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+""", unsafe_allow_html=True)
+
+st.write("Watch this if you want to learn more about the passive voice!")
 
 with tab3:
     import streamlit as st
