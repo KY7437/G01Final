@@ -2,7 +2,10 @@ import streamlit as st
 
 st.title("📘 About This App")
 
+import streamlit as st
+
 st.video("https://github.com/KY7437/G01Final/raw/main/data/dl.mp4", caption="Introduction Video", width=500)
+
 
 st.markdown("""
 Welcome to the **Middle School English Learning App**, a comprehensive platform designed to help students improve their English skills through **interactive and engaging activities**.  
