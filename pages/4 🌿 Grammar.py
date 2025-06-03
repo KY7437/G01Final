@@ -5,7 +5,7 @@ from streamlit_drawable_canvas import st_canvas
 import numpy as np
 
 # Define tabs
-tab1, tab2, tab3, tab4 = st.tabs(["🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
+tab1, tab2, tab3 = st.tabs(["🍃 Grammar Concept", "🍃 Role Play", "🍃 Drawing Activity"])
 
 with tab1:
     st.title("Passives")
@@ -44,25 +44,16 @@ with tab1:
         The past participle often ends in -ed (cleaned/damaged etc.), but many important verbs are irregular (built/done/stolen etc.). To practice irregular forms more, go to Voca Starter and use the app deployed on tab 3.
         </div>
     """, unsafe_allow_html=True)
-   
-    import streamlit as st
 
     st.title("🎬 What Is the Passive Voice?")
-
-    # iframe을 사용해 영상 크기 조절
     st.markdown("""
     <iframe width="400" height="300" src="https://www.youtube.com/embed/JDuMljo0uik" 
 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
 allowfullscreen></iframe>
 """, unsafe_allow_html=True)
-
     st.write("Watch this if you want to learn more about the passive voice!")
 
 with tab2:
-    import streamlit as st
-    from gtts import gTTS
-    import tempfile
-
     # Grammar expression and dialogue database
     EXPRESSION_DB = {
         "be p.p": {
@@ -106,7 +97,6 @@ with tab2:
         }
     }
 
-    # Title and intro
     st.title("🎭 Roleplay Dialog App")
     st.markdown("Select a grammar expression and view dialogues with audio. Great for practice and role-play!")
 
@@ -155,33 +145,27 @@ with tab2:
                 else:
                     st.write("")
 
-
-
 with tab3:
     st.title("Drawing Activity")
-    st.write("This section is for the second class activity. Students should aware of essential words, the concept of passives, and comprehenshion of the passage.")
+    st.write("This section is for the second class activity. Students should aware of essential words, the concept of passives, and comprehension of the passage.")
 
-    def main():
-        st.header("Draw to describe the provided sentence.")
+    st.header("Draw to describe the provided sentence.")
 
-        # 사용자 입력 위젯
-        stroke_width = st.slider("Thickness", min_value=1, max_value=25, value=5)
-        stroke_color = st.color_picker("Color", "#000000")
+    # User input widget
+    stroke_width = st.slider("Thickness", min_value=1, max_value=25, value=5)
+    stroke_color = st.color_picker("Color", "#000000")
 
-        canvas_result = st_canvas(
-            fill_color="rgba(255, 165, 0, 0.3)",  # 투명 오렌지색 배경
-            stroke_width=stroke_width,
-            stroke_color=stroke_color,
-            background_color="#eeeeee",
-            height=400,
-            width=600,
-            drawing_mode="freedraw",
-            key="canvas",
-        )
+    canvas_result = st_canvas(
+        fill_color="rgba(255, 165, 0, 0.3)",  # Transparent orange background
+        stroke_width=stroke_width,
+        stroke_color=stroke_color,
+        background_color="#eeeeee",
+        height=400,
+        width=600,
+        drawing_mode="freedraw",
+        key="canvas",
+    )
 
-        if canvas_result.image_data is not None:
-            img = canvas_result.image_data.astype(np.uint8)
-            st.image(img)
-
-    if __name__ == "__main__":
-        main()
+    if canvas_result.image_data is not None:
+        img = canvas_result.image_data.astype(np.uint8)
+        st.image(img)
