@@ -1,8 +1,12 @@
 import streamlit as st
 
-st.header("Instruction Video")
-st.video("https://github.com/KY7437/G01Final/raw/main/data/dl.mp4", caption="instruction video(2:44)", width=500)
+st.title(" 🎬 Tour ")
 
+# 새로운 유튜브 영상 삽입
+st.video("https://youtu.be/38SFyPRu_WU?si=55dsrJfJ9_eTp8m_")
+
+st.write("This video is designed to help you better understand the lesson.
+")
 
 st.title("📘 About This App")
 
