@@ -3,7 +3,11 @@ import streamlit as st
 st.title(" 🎬 Tour ")
 
 # 새로운 유튜브 영상 삽입
-st.video("https://youtu.be/38SFyPRu_WU?si=55dsrJfJ9_eTp8m_")
+st.markdown("""
+<iframe width="700" height="400" src="https://www.youtube.com/embed/38SFyPRu_WU" 
+frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+""", unsafe_allow_html=True)
 
 st.write("This video is designed to help you better understand the lesson.")
 
