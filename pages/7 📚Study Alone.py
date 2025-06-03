@@ -28,12 +28,12 @@ with tab1:
     st.markdown(f"""
     <div class="guidelines-text">
         <h1>Guidelines</h1>
-        <p>In this section, the apps are designed for students to study efficiently, by themselves. You can use these apps whenever you needed, unless you lose the access.
+        <p>In this section, the apps are designed for students to study efficiently, by themselves.<br> You can use these apps whenever you needed, unless you lose the access.<br>
         If you lost it, and you need to access, please talk to your teacher.</p>
         <h2>Homework</h2>
-        <p>Try these review app by yourself. Do not share your answer with anyone. 
-        Then, capture or screenshot your result (of all tabs) and post it on padlet below.
-        When you post it on padlet, write your name and student number. 
+        <p>Try these review app by yourself. Do not share your answer with anyone. <br>
+        Then, capture or screenshot your result (of all tabs) and post it on padlet below.<br>
+        When you post it on padlet, write your name and student number. <br>
         You may try as many times as you want. But please post your results once.</p>
     </div>
     """, unsafe_allow_html=True)
