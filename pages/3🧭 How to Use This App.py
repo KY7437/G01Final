@@ -15,6 +15,7 @@ with st.expander("🌱 1. Voca Starter"):
 # Section 2: Grammar
 with st.expander("🌿 2. Grammar"):
     st.markdown("""
+- **Grammar Concept**: Read the text that explains what passive is.
 - **Video Explanations**: Watch short, clear videos explaining grammar rules with text.  
 - **Drawing Activity**: Use an interactive canvas to visualize grammar concepts (e.g., sentence structure, parts of speech).
     """)
@@ -24,7 +25,6 @@ with st.expander("🌳 3. Passage Reading"):
     st.markdown("""
 - **Korean Translation**: Understand difficult parts through L1 support.  
 - **TTS (Text-to-Speech)**: Listen to native-like pronunciation.  
-- **Cloze Activity**: Fill in blanks based on context to practice vocabulary and grammar in passages.
     """)
 
 # Section 4: Quiz
