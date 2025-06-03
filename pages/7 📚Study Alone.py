@@ -12,6 +12,19 @@ st.title("📚Study Alone")
 tab1, tab2, tab3 = st.tabs(["🔍 Guidelines", "✏️ Memorization of the text", "✏️ Active to Passive Practice"])
 
 with tab1:
+
+     # Font size scaler
+    font_size = st.slider("Select Font Size", min_value=12, max_value=40, value=20, step=2)
+
+    # Apply the selected font size
+    st.markdown(f"""
+        <style>
+        .passive-text {{
+            font-size: {font_size}px !important;
+        }}
+        </style>
+        """, unsafe_allow_html=True)
+    
     st.title("Guidelines")
     st.write("""In this section, the apps are designed for students to study efficiently, by themselves. You can use these apps whenever you needed, unless you lose the access.
     If you lost it, and you need to access, please talk to your teacher. """)
