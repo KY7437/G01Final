@@ -50,100 +50,101 @@ with tab2:
 
 with tab3:
     import streamlit as st
-from gtts import gTTS
-import tempfile
+    from gtts import gTTS
+    import tempfile
 
-# Grammar expression and dialogue database
-EXPRESSION_DB = {
-    "be p.p": {
-        "examples": [
-            [
-                "A: Did you hear? Our classroom was cleaned yesterday.",
-                "B: Really? It looks so much better now.",
-                "A: Yeah, and new computers were installed this morning.",
-                "B: That’s great! I heard the old ones were broken last week.",
-                "A: Right. The whole room was redesigned by the school’s tech team."
-            ],
-            [
-                "A: The soccer field was repaired last weekend.",
-                "B: Yeah, I saw that! The grass was replaced too.",
-                "A: It was damaged after the heavy rain, right?",
-                "B: Exactly. Now it looks brand new!"
-            ],
-            [
-                "A: Did you know the art competition results were announced?",
-                "B: No way! Was my painting chosen?",
-                "A: Yes! Your artwork was selected for first prize!",
-                "B: That’s amazing! I didn’t expect that at all."
-            ],
-            [
-                "A: Our science project was displayed in the hallway.",
-                "B: I saw it! A lot of students were impressed.",
-                "A: It was presented really well, thanks to your design.",
-                "B: Thanks! I’m glad our effort was noticed."
+    # Grammar expression and dialogue database
+    EXPRESSION_DB = {
+        "be p.p": {
+            "examples": [
+                [
+                    "A: Did you hear? Our classroom was cleaned yesterday.",
+                    "B: Really? It looks so much better now.",
+                    "A: Yeah, and new computers were installed this morning.",
+                    "B: That’s great! I heard the old ones were broken last week.",
+                    "A: Right. The whole room was redesigned by the school’s tech team."
+                ],
+                [
+                    "A: The soccer field was repaired last weekend.",
+                    "B: Yeah, I saw that! The grass was replaced too.",
+                    "A: It was damaged after the heavy rain, right?",
+                    "B: Exactly. Now it looks brand new!"
+                ],
+                [
+                    "A: Did you know the art competition results were announced?",
+                    "B: No way! Was my painting chosen?",
+                    "A: Yes! Your artwork was selected for first prize!",
+                    "B: That’s amazing! I didn’t expect that at all."
+                ],
+                [
+                    "A: Our science project was displayed in the hallway.",
+                    "B: I saw it! A lot of students were impressed.",
+                    "A: It was presented really well, thanks to your design.",
+                    "B: Thanks! I’m glad our effort was noticed."
+                ]
             ]
-        ]
+        }
     }
-}
 
-# Grammar explanation
-EXPRESSION_INFO = {
-    "be p.p": {
-        "description": (
-            "**Passive voice 'be + past participle' (be p.p)** is used when the subject receives the action.\n\n"
-            "Example: *The window was broken by the wind.*"
-        )
+    # Grammar explanation
+    EXPRESSION_INFO = {
+        "be p.p": {
+            "description": (
+                "**Passive voice 'be + past participle' (be p.p)** is used when the subject receives the action.\n\n"
+                "Example: *The window was broken by the wind.*"
+            )
+        }
     }
-}
 
-# Title and intro
-st.title("🎭 Roleplay Dialog App")
-st.markdown("Select a grammar expression and view dialogues with audio. Great for practice and role-play!")
+    # Title and intro
+    st.title("🎭 Roleplay Dialog App")
+    st.markdown("Select a grammar expression and view dialogues with audio. Great for practice and role-play!")
 
-# Select grammar expression
-expression = "be p.p"  # Only one available now
+    # Select grammar expression
+    expression = "be p.p"  # Only one available now
 
-# Show grammar explanation
-st.markdown("### 📘 Grammar Explanation")
-st.markdown(EXPRESSION_INFO[expression]["description"])
+    # Show grammar explanation
+    st.markdown("### 📘 Grammar Explanation")
+    st.markdown(EXPRESSION_INFO[expression]["description"])
 
-# Select dialogue index
-dialogue_list = EXPRESSION_DB[expression]["examples"]
-dialogue_options = [f"Dialogue {i+1}" for i in range(len(dialogue_list))]
-dialogue_index = st.selectbox("🎬 Choose a dialogue:", dialogue_options, index=0)
-selected_dialogue = dialogue_list[dialogue_options.index(dialogue_index)]
+    # Select dialogue index
+    dialogue_list = EXPRESSION_DB[expression]["examples"]
+    dialogue_options = [f"Dialogue {i+1}" for i in range(len(dialogue_list))]
+    dialogue_index = st.selectbox("🎬 Choose a dialogue:", dialogue_options, index=0)
+    selected_dialogue = dialogue_list[dialogue_options.index(dialogue_index)]
 
-# Audio playback
-if st.button("▶️ Listen to the dialogue"):
-    full_text = " ".join(selected_dialogue)
-    tts = gTTS(full_text)
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as fp:
-        tts.save(fp.name)
-        st.audio(fp.name, format="audio/mp3")
+    # Audio playback
+    if st.button("▶️ Listen to the dialogue"):
+        full_text = " ".join(selected_dialogue)
+        tts = gTTS(full_text)
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as fp:
+            tts.save(fp.name)
+            st.audio(fp.name, format="audio/mp3")
 
-# Show dialogue text toggle
-if "show_text" not in st.session_state:
-    st.session_state["show_text"] = False
+    # Show dialogue text toggle
+    if "show_text" not in st.session_state:
+        st.session_state["show_text"] = False
 
-if st.button("👀 Show / Hide the dialogue text"):
-    st.session_state["show_text"] = not st.session_state["show_text"]
+    if st.button("👀 Show / Hide the dialogue text"):
+        st.session_state["show_text"] = not st.session_state["show_text"]
 
-if st.session_state["show_text"]:
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("👤 A")
-        for line in selected_dialogue:
-            if line.startswith("A:"):
-                st.write(line[3:])
-            else:
-                st.write("")
-    with col2:
-        st.subheader("🧑 B")
-        for line in selected_dialogue:
-            if line.startswith("B:"):
-                st.write(line[3:])
-            else:
-                st.write("")
+    if st.session_state["show_text"]:
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("👤 A")
+            for line in selected_dialogue:
+                if line.startswith("A:"):
+                    st.write(line[3:])
+                else:
+                    st.write("")
+        with col2:
+            st.subheader("🧑 B")
+            for line in selected_dialogue:
+                if line.startswith("B:"):
+                    st.write(line[3:])
+                else:
+                    st.write("")
+
 
 
 with tab4:
