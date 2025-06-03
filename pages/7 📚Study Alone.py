@@ -13,29 +13,35 @@ tab1, tab2, tab3 = st.tabs(["🔍 Guidelines", "✏️ Memorization of the text"
 
 with tab1:
 
-     # Font size scaler
+    import streamlit as st
+     # Define the tab
+     with st.tabs(["Guidelines"])[0]:
+    # Font size scaler
     font_size = st.slider("Select Font Size", min_value=12, max_value=40, value=20, step=2)
 
     # Apply the selected font size
     st.markdown(f"""
         <style>
-        .passive-text {{
+        .guidelines-text {{
             font-size: {font_size}px !important;
         }}
         </style>
         """, unsafe_allow_html=True)
     
-    st.title("Guidelines")
-    st.write("""In this section, the apps are designed for students to study efficiently, by themselves. You can use these apps whenever you needed, unless you lose the access.
-    If you lost it, and you need to access, please talk to your teacher. """)
-    st.header("Homework")
-    st.write("""
-    Try these review app by yourself. Do not share your answer with anyone. 
-    Then, capture or screenshot your result (of all tabs) and post it on padlet below.
-    When you post it on padlet, write your name and student number. 
-    You may try as many times as you want. But please post your results once.
-      """)
-      
+    # Use the CSS class for content
+    st.markdown(f"""
+    <div class="guidelines-text">
+        <h1>Guidelines</h1>
+        <p>In this section, the apps are designed for students to study efficiently, by themselves. You can use these apps whenever you needed, unless you lose the access.
+        If you lost it, and you need to access, please talk to your teacher.</p>
+        <h2>Homework</h2>
+        <p>Try these review app by yourself. Do not share your answer with anyone. 
+        Then, capture or screenshot your result (of all tabs) and post it on padlet below.
+        When you post it on padlet, write your name and student number. 
+        You may try as many times as you want. But please post your results once.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
       
 with tab2:
     st.title("Memorization of the Text")
