@@ -44,6 +44,7 @@ with tab1:
       
 with tab2:
     st.title("Memorization of the Text")
+    st.write("There are one or two blanks for each sentences. Fill in the blank. If you don't know the word, please enter comma(,) twice.")
 
     # Text passage
     text = """In the small town of Willowby, there stood an old library that was rumored to be enchanted. Every night at midnight, the books inside would whisper stories to each other, bringing their characters to life. One evening, Sarah, a curious 15-year-old book lover, decided to sneak into the library to see if the rumors were true.
