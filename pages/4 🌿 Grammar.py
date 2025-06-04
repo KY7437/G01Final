@@ -10,6 +10,7 @@ tab1, tab2, tab3 = st.tabs(["🍃 Grammar Concept", "🍃 Role Play", "🍃 Draw
 with tab1:
     st.title("Passives")
     st.markdown("Raymond Murphy, (2019). English Grammar in Use, Cambridge, p. 84")
+    st.write("more explanation")
     
     # Font size scaler
     font_size = st.slider("Select Font Size", min_value=12, max_value=40, value=20, step=2)
@@ -55,6 +56,11 @@ allowfullscreen></iframe>
 
 with tab2:
     # Grammar expression and dialogue database
+    ### 대화문 보고 눈으로보고 소리듣기
+    ### 이미지 등 제공해서 어떤 상황에서 말하는지 줄 것
+    ### 칼럼 나누어서 A와 B의 대화 각각 나오게 하기
+    ### TTS 각각 주기
+    ### instruction 재검토하기(flow가 맞는지)
     EXPRESSION_DB = {
         "be p.p": {
             "examples": [
