@@ -61,7 +61,7 @@ with tab1:
 # ------------------- TAB 2 -------------------
 with tab2:
     st.header("Verb Form Quiz (Level 1)")
-    st.markdown("Enter the **preterite form** of the verb above.")
+    st.markdown("Enter the **proper form** of the verb above.")
 
     verb_data = [
         {"base": "go", "past": "went", "pp": "gone"},
