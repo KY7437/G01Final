@@ -31,6 +31,8 @@ tab1, tab2, tab3 = st.tabs(["🍃 Word List", "🍃 Meaning Master", "🍃 Spell
 
 with tab1:
     st.markdown("### 📋 Word List")
+    st.header("Instruction")
+    st.write("Learners should know words meaning and spelling before the class begin.")
 
     # Load CSV from GitHub
     url = "https://raw.githubusercontent.com/KY7437/G01Final/main/wordlist.csv"
