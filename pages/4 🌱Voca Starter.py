@@ -33,8 +33,7 @@ with tab1:
     st.markdown("### 📋 Word List")
     st.header("Instruction")
     st.write("Learners should know the words’ meanings and spellings before the class begins.
-              This app is designed to help you review key vocabulary through fun and interactive activities,
-              such as matching word meanings and spelling practice.")
+This app is designed to help you review key vocabulary through fun and interactive activities, such as matching word meanings and spelling practice.")
 
     # Load CSV from GitHub
     url = "https://raw.githubusercontent.com/KY7437/G01Final/main/wordlist.csv"
