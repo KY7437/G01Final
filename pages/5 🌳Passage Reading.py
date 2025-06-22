@@ -66,7 +66,6 @@ with tab1:
 with tab2:
     # Function to split text into sentences
     def split_text_into_sentences(text):
-        # Stripping any unnecessary whitespace and splitting on the regex pattern
         sentences = re.split(r'(?<=[.!?])\s+', text.strip())
         return sentences
 
@@ -80,30 +79,25 @@ with tab2:
     """
     sentences = split_text_into_sentences(passage)
 
-    # Initialize session state for sentence index
-    if 'index' not in st.session_state:
-        st.session_state.index = 0
+    # Initialize session state for selected sentence
+    if 'selected_sentence' not in st.session_state:
+        st.session_state.selected_sentence = sentences[0]
 
-    def get_tts():
-        sentence = sentences[st.session_state.index]
+    # Dropdown for selecting a sentence
+    selected_sentence = st.selectbox("Select a sentence to listen to", sentences)
+    st.session_state.selected_sentence = selected_sentence
+
+    # Function to create TTS audio
+    def get_tts(sentence):
         tts = gTTS(text=sentence, lang='en')
         audio_bytes = BytesIO()
         tts.write_to_fp(audio_bytes)
         audio_bytes.seek(0)
-        return sentence, audio_bytes
+        return audio_bytes
 
-    st.header("Sentence by Sentence TTS Reader")
-    sentence, audio_bytes = get_tts()
-    st.text_area("Current Sentence", value=sentence, height=100, key="current_sentence")
+    # Generate TTS for the selected sentence
+    audio_bytes = get_tts(st.session_state.selected_sentence)
+
+    # Display the selected sentence and play audio
+    st.text_area("Current Sentence", value=st.session_state.selected_sentence, height=100, key="current_sentence")
     st.audio(audio_bytes, format="audio/mp3")
-
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("◀ Previous") and st.session_state.index > 0:
-            st.session_state.index -= 1
-    with col2:
-        if st.button("Next ▶") and st.session_state.index < len(sentences) - 1:
-            st.session_state.index += 1
-
-    # Apply the custom font size to the text
-    st.markdown(f'<div class="sentence-text">{sentence}</div>', unsafe_allow_html=True)
