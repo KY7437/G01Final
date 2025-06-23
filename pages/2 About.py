@@ -51,6 +51,8 @@ Each activity is designed to make learning **meaningful**, **visual**, and **act
 **Happy studying! 🌱📚✨**
 """)
 
+---
+
 st.markdown("""
 <iframe width="500" height="400" src="https://www.youtube.com/embed/IIORZVb8ZZw" 
 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
