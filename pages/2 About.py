@@ -51,8 +51,6 @@ Each activity is designed to make learning **meaningful**, **visual**, and **act
 **Happy studying! 🌱📚✨**
 """)
 
-st.markdown("""
-<iframe width="800" height="450" src="https://www.youtube.com/embed/IIORZVb8ZZw" 
-frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-allowfullscreen></iframe>
-""", unsafe_allow_html=True)
+import streamlit.components.v1 as components
+
+components.iframe("https://www.youtube.com/embed/IIORZVb8ZZw", width=800, height=450)
